@@ -76,7 +76,12 @@
     }
     nav.scrolled { background: rgba(10,13,20,0.99); }
 
-    .nav-logo img { height: 80px; display: block; filter: brightness(1.1); }
+    .nav-logo-text {
+      font-family: 'Jost', sans-serif;
+      font-size: 28px; font-weight: 800;
+      letter-spacing: 0.12em;
+      color: #fff;
+    }
 
     .nav-links {
       display: flex; align-items: center; gap: 4px;
@@ -869,7 +874,14 @@
       display: grid; grid-template-columns: 1.3fr 1fr 1fr;
       gap: 40px;
     }
-    .ft-brand img { height: 80px; margin-bottom: 14px; display: block; max-width: 100%; }
+    .ft-logo-text {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-size: 32px; font-weight: 800;
+      letter-spacing: 0.12em;
+      color: #1a1a1a;
+      margin-bottom: 14px;
+    }
     .ft-brand p { font-size: 18px; font-weight: 500; line-height: 1.7; color: #000; max-width: 280px; }
     .ft-col-title { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #999; margin-bottom: 14px; }
     .ft-nav { list-style: none; display: flex; flex-direction: column; gap: 9px; }
@@ -962,7 +974,7 @@
       body { padding-top: 60px; }
       .nav-links { display: none; }
       .nav-burger { display: flex; }
-      .nav-logo img { height: 50px; }
+      .nav-logo-text { font-size: 22px; }
 
       .hero-grid {
         grid-template-columns: 1fr;
@@ -1076,7 +1088,7 @@
 <!-- ══ NAV ══ -->
 <nav id="navbar">
   <div class="nav-logo">
-    <img src="brand_assets/Libidiol (Logo).png" alt="Libidiol">
+    <span class="nav-logo-text">LIBIDIOL</span>
   </div>
   <ul class="nav-links">
     <li><a href="#hero">Home</a></li>
@@ -1524,7 +1536,7 @@
   <footer>
     <div class="ft-top">
       <div class="ft-brand">
-        <img src="brand_assets/Libidiol (Logo).png" alt="Libidiol">
+        <span class="ft-logo-text">LIBIDIOL</span>
         <p>Pioneering premium men's health supplements. Natural formulas, clinically inspired, globally distributed.</p>
       </div>
       <div>

@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libidiol — Investment Opportunity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy-deep:  #0E1119;
+      --navy-mid:   #223048;
+      --navy-card:  #2A3F6A;
+      --blue:       #2B72F0;
+      --teal:       #1FAE72;
+      --gold:       #7EC8A4;
+      --gold-light: #9DD8B8;
+      --text:       #EDF0F7;
+      --text-mid:   #A8B3C8;
+      --text-dim:   #5A6680;
+      --border:     rgba(255,255,255,0.07);
+      --border-mid: rgba(255,255,255,0.14);
+      --neon:       #00E87C;
+      --neon-glow:  rgba(0,232,124,0.55);
+      --radius:     14px;
+      --gap:        10px;
+      --pad:        20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--navy-deep);
+      color: var(--text);
+      overflow-x: hidden;
+      min-width: 320px;
+      padding-top: 70px;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--navy-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    /* ─── UTILITY ─── */
+    .wrap {
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+
+    /* ─────────────────────────────
+       NEON GLOW — applied to all cards
+    ───────────────────────────── */
+    .neon-box {}
+
+    /* ─────────────────────────────
+       NAV
+    ───────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0;
+      z-index: 300;
+      width: 100%;
+      height: 70px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      background: rgba(28,34,53,0.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-mid);
+      border-radius: 0;
+      transition: all 0.3s;
+    }
+    nav.scrolled { background: rgba(10,13,20,0.99); }
+
+    .nav-logo img { height: 34px; filter: brightness(1.1); display: block; }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 400;
+      color: var(--text-mid); text-decoration: none;
+      padding: 8px 18px; border-radius: 30px;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.07); }
+
+    .nav-cta {
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--navy-deep); background: var(--gold);
+      border: none; cursor: pointer;
+      padding: 11px 26px; border-radius: 30px;
+      text-decoration: none; transition: all 0.2s;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .nav-cta:hover { background: var(--gold-light); }
+
+    /* hamburger */
+    .nav-burger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text-mid); border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* mobile drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed; top: 76px; left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px); max-width: 440px;
+      background: rgba(28,34,53,0.97);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-mid);
+      border-radius: var(--radius);
+      padding: 16px;
+      z-index: 299;
+      flex-direction: column; gap: 4px;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      font-size: 15px; font-weight: 400;
+      color: var(--text-mid); text-decoration: none;
+      padding: 12px 16px; border-radius: 10px;
+      transition: all 0.2s;
+    }
+    .nav-drawer a:hover { color: var(--text); background: rgba(255,255,255,0.07); }
+    .nav-drawer .drawer-cta {
+      margin-top: 8px;
+      background: var(--gold); color: var(--navy-deep);
+      font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; text-align: center;
+      border-radius: 30px;
+    }
+    .nav-drawer .drawer-cta:hover { background: var(--gold-light); }
+
+    /* ─────────────────────────────
+       HERO
+    ───────────────────────────── */
+    #hero {
+      width: 100%;
+      padding: 78px var(--pad) var(--gap);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 48% 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: var(--gap);
+      height: calc(100vh - 88px);
+      min-height: 580px;
+      max-height: 900px;
+    }
+
+    /* top-left */
+    .hero-text-card {
+      grid-column: 1; grid-row: 1;
+      background: var(--navy-card);
+      border-radius: var(--radius);
+      padding: 48px 44px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-text-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(196,151,90,0.5), transparent);
+    }
+
+    .hero-eyebrow {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .hero-eyebrow::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+
+    .hero-title {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(40px, 4vw, 68px);
+      font-weight: 700; line-height: 0.97;
+      letter-spacing: -0.02em; color: var(--text);
+      margin-bottom: 18px;
+    }
+    .hero-title em {
+      display: block; font-style: italic; font-weight: 300;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: 14px; font-weight: 300; line-height: 1.7;
+      color: var(--text-mid); max-width: 360px; margin-bottom: 32px;
+    }
+
+    /* bottom-left */
+    .hero-pic-card {
+      grid-column: 1; grid-row: 2;
+      background: var(--navy-mid);
+      border-radius: var(--radius);
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      overflow: hidden;
+      animation: fadeUp 0.6s ease 0.15s both;
+    }
+
+    .pic-visual {
+      background: var(--navy-deep);
+      position: relative; overflow: hidden;
+    }
+    .pic-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center center;
+      display: block;
+    }
+    .pic-visual::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 60%, rgba(34,48,72,0.6) 100%);
+      pointer-events: none;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+    .pic-text {
+      padding: 28px 24px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .pic-text .pt-label {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px;
+    }
+    .pic-text h3 {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(26px, 2.8vw, 36px); font-weight: 600;
+      color: var(--text); margin-bottom: 12px; line-height: 1.15;
+    }
+    .pic-text p {
+      font-size: 15px; font-weight: 300;
+      line-height: 1.7; color: var(--text-mid); margin-bottom: 18px;
+    }
+    .pic-text a {
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: gap 0.2s;
+    }
+    .pic-text a:hover { gap: 10px; }
+
+    /* right column — doctor photo spans both rows */
+    .hero-photo {
+      grid-column: 2; grid-row: 1 / 3;
+      border-radius: var(--radius);
+      overflow: hidden; position: relative;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 40% 15%;
+      display: block;
+    }
+    .hero-photo::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(28,34,53,0.35) 0%, transparent 25%),
+        linear-gradient(to top, rgba(14,17,25,0.5) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .hero-photo-tags {
+      position: absolute; bottom: 20px; left: 20px;
+      display: flex; flex-direction: column; gap: 8px; z-index: 2;
+    }
+    .htag {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 30px;
+      backdrop-filter: blur(14px); width: fit-content;
+    }
+    .htag.blue { color: #8EC4FF; background: rgba(43,114,240,0.2); border: 1px solid rgba(43,114,240,0.3); }
+    .htag.green { color: #5DD6A0; background: rgba(31,174,114,0.17); border: 1px solid rgba(31,174,114,0.28); }
+
+    /* btn */
+    .btn-pill {
+      display: inline-block; width: fit-content;
+      font-size: 13px; font-weight: 500;
+      color: var(--text); background: transparent;
+      border: 1px solid var(--border-mid);
+      padding: 11px 26px; border-radius: 40px;
+      text-decoration: none; transition: all 0.25s;
+    }
+    .btn-pill:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.25); }
+    .btn-pill.gold {
+      background: #7EC8A4; border-color: #7EC8A4;
+      color: #0E1119; font-weight: 600;
+    }
+    .btn-pill.gold:hover {
+      background: #9DD8B8; border-color: #9DD8B8;
+      transform: translateY(-1px); box-shadow: 0 6px 20px rgba(126,200,164,0.35);
+    }
+
+    /* ─────────────────────────────
+       TICKER
+    ───────────────────────────── */
+    .ticker-wrap {
+      width: 100%; padding: var(--gap) var(--pad) 0;
+    }
+    .ticker-bar {
+      background: var(--navy-mid);
+      border-radius: 10px; overflow: hidden; padding: 12px 0;
+      border: 1px solid var(--border);
+    }
+    .ticker-track {
+      display: flex; width: max-content;
+      animation: ticker 32s linear infinite;
+    }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .ti {
+      display: flex; align-items: center; gap: 10px;
+      padding: 0 36px; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-mid); white-space: nowrap;
+    }
+    .ti .v { color: var(--gold); font-weight: 600; }
+    .ti::after { content: '◆'; color: var(--text-dim); font-size: 5px; margin-left: 36px; }
+
+    /* ─────────────────────────────
+       SECTION COMMON
+    ───────────────────────────── */
+    .section-pad {
+      width: 100%; padding: var(--gap) var(--pad) 0;
+    }
+    .eyebrow {
+      font-size: 16px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+    }
+    .big-title {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(34px, 4vw, 58px); font-weight: 700;
+      line-height: 1.0; letter-spacing: -0.02em; color: var(--text);
+    }
+    .big-title em { font-style: italic; font-weight: 300; color: var(--text-mid); }
+    .body-text {
+      font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-mid);
+    }
+
+    /* ─────────────────────────────
+       INVESTMENT PRODUCT BANNER
+    ───────────────────────────── */
+    .inv-banner {
+      background: #D6DCE4;
+      border-radius: var(--radius);
+      padding: 36px 48px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 32px;
+      border: 1px solid #B8C2CE;
+      position: relative; overflow: hidden;
+    }
+    .inv-banner::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(196,151,90,0.45), transparent);
+    }
+    .inv-banner-title {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(28px, 3vw, 44px); font-weight: 700;
+      color: #1A2640; white-space: nowrap;
+    }
+    .inv-banner-title span { color: #2E7D5E; font-style: italic; font-weight: 300; }
+    .inv-banner-sub {
+      font-size: 16px; font-weight: 300; color: #3D4F6A;
+      line-height: 1.7; max-width: 400px; flex: 1;
+    }
+
+    /* ─────────────────────────────
+       PRODUCTS
+    ───────────────────────────── */
+    .products-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+    }
+
+    .prod-card {
+      background: var(--navy-card); border-radius: var(--radius);
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .prod-card:hover { transform: translateY(-4px); }
+    .prod-card.blue:hover { box-shadow: 0 16px 48px rgba(43,114,240,0.14); }
+    .prod-card.green:hover { box-shadow: 0 16px 48px rgba(31,174,114,0.12); }
+
+    .prod-img {
+      background: var(--navy-deep);
+      display: flex; align-items: center; justify-content: center;
+      padding: 44px 24px; position: relative; overflow: hidden;
+      min-height: 380px;
+    }
+    .prod-card.blue .prod-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at center, rgba(43,114,240,0.13) 0%, transparent 70%);
+    }
+    .prod-card.green .prod-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at center, rgba(31,174,114,0.09) 0%, transparent 70%);
+    }
+    .prod-img img {
+      width: 320px; position: relative; z-index: 1;
+      filter: drop-shadow(0 14px 36px rgba(0,0,0,0.7));
+      transition: transform 0.5s;
+    }
+    .prod-card:hover .prod-img img { transform: scale(1.05) translateY(-4px); }
+
+    .prod-info { padding: 36px 28px; display: flex; flex-direction: column; justify-content: center; }
+    .prod-tag {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 5px 12px; display: inline-block; width: fit-content;
+      margin-bottom: 16px; border-radius: 4px;
+    }
+    .prod-card.blue .prod-tag { color: #7BB5FF; background: rgba(43,114,240,0.12); border: 1px solid rgba(43,114,240,0.2); }
+    .prod-card.green .prod-tag { color: #52C994; background: rgba(31,174,114,0.10); border: 1px solid rgba(31,174,114,0.2); }
+    .prod-name {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(36px, 3.5vw, 52px); font-weight: 700;
+      line-height: 1; color: var(--text); margin-bottom: 5px;
+    }
+    .prod-sub {
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 18px;
+    }
+    .prod-desc { font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--text-mid); margin-bottom: 20px; }
+    .prod-feats { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .prod-feats li {
+      font-size: 14px; font-weight: 400; color: var(--text-mid);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .prod-feats li::before { content: ''; width: 12px; height: 1px; flex-shrink: 0; }
+    .prod-card.blue .prod-feats li::before { background: #6BA3F5; }
+    .prod-card.green .prod-feats li::before { background: #52C994; }
+    .prod-purpose {
+      margin-top: 20px; padding-top: 18px;
+      border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .prod-purpose-item { display: flex; flex-direction: column; gap: 2px; }
+    .pp-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .pp-text { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.6; }
+
+    /* ─────────────────────────────
+       STATISTICS
+    ───────────────────────────── */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: #D6DCE4;
+      border-radius: var(--radius);
+      border: 1px solid #B8C2CE;
+      overflow: hidden;
+    }
+    .stat-cell {
+      padding: 36px 28px;
+      border-right: 1px solid #B8C2CE;
+      transition: background 0.3s; position: relative;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell:hover { background: #C8D0DA; }
+    .stat-cell::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .stat-cell:hover::after { opacity: 1; }
+    .stat-num {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(40px, 4vw, 54px); font-weight: 700;
+      line-height: 1; color: #1A2640; margin-bottom: 8px;
+    }
+    .stat-num span { color: #2E7D5E; }
+    .stat-lbl {
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; color: #3D4F6A;
+    }
+
+    /* ─────────────────────────────
+       DETAIL
+    ───────────────────────────── */
+    .detail-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+    }
+    .detail-card {
+      background: var(--navy-card); border-radius: var(--radius);
+      padding: 44px 40px; position: relative; overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .detail-card:hover { transform: translateY(-3px); }
+    .detail-card.blue::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+    }
+    .detail-card.green::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    }
+    .dc-head { display: flex; align-items: center; gap: 18px; margin-bottom: 24px; }
+    .dc-head img { width: 72px; filter: drop-shadow(0 6px 20px rgba(0,0,0,0.6)); flex-shrink: 0; }
+    .dc-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 4px;
+    }
+    .detail-card.blue .dc-label { color: #7BB5FF; }
+    .detail-card.green .dc-label { color: #52C994; }
+    .dc-head h3 {
+      font-family: 'Cormorant', serif;
+      font-size: 30px; font-weight: 700; color: var(--text); line-height: 1.05;
+    }
+    .dc-divider { height: 1px; background: var(--border); margin-bottom: 22px; }
+    .dc-points { display: flex; flex-direction: column; gap: 16px; }
+    .dc-point { display: flex; gap: 14px; align-items: flex-start; }
+    .dc-num {
+      font-family: 'Cormorant', serif;
+      font-size: 20px; font-weight: 600; flex-shrink: 0; width: 24px; line-height: 1.2;
+    }
+    .detail-card.blue .dc-num { color: rgba(43,114,240,0.45); }
+    .detail-card.green .dc-num { color: rgba(31,174,114,0.45); }
+    .dc-body strong { display: block; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .dc-body p { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--text-mid); }
+
+    /* ─────────────────────────────
+       WHY INVEST
+    ───────────────────────────── */
+    .why-header {
+      background: #D6DCE4; border-radius: var(--radius);
+      padding: 44px 48px; margin-bottom: var(--gap);
+      text-align: center; border: 1px solid #B8C2CE;
+    }
+    .why-header .big-title { color: #1A2640; }
+    .why-header .big-title em { color: #2E7D5E; }
+    .why-header .eyebrow { display: block; margin-bottom: 12px; color: #2E7D5E; font-size: 16px; }
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap);
+    }
+    .pillar {
+      background: var(--navy-card); border-radius: var(--radius);
+      padding: 36px 28px; position: relative; overflow: hidden;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .pillar:hover { transform: translateY(-3px); background: #212840; }
+    .pillar::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .pillar:hover::before { opacity: 1; }
+    .pil-num {
+      font-family: 'Cormorant', serif; font-size: 52px; font-weight: 300;
+      color: rgba(196,151,90,0.1); line-height: 1; margin-bottom: 12px;
+    }
+    .pil-title {
+      font-family: 'Cormorant', serif; font-size: 24px; font-weight: 500;
+      color: var(--text); margin-bottom: 12px;
+    }
+    .pil-text { font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--text-mid); }
+
+    /* ─────────────────────────────
+       ONLY WHEN YOU NEED IT
+    ───────────────────────────── */
+    .owyneed-card {
+      background: #D6DCE4; border-radius: var(--radius);
+      border: 1px solid #B8C2CE;
+      position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 420px;
+    }
+    .owyneed-text {
+      padding: 44px 48px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .owyneed-img {
+      position: relative;
+    }
+    .owyneed-img img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center center;
+    }
+    @media (max-width: 900px) {
+      .owyneed-card { grid-template-columns: 1fr; }
+      .owyneed-img { min-height: 280px; }
+    }
+    .owyneed-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      z-index: 1;
+    }
+    .owyneed-title {
+      font-family: 'Cormorant', serif; font-size: 28px; font-weight: 700;
+      color: #1A2640; margin-bottom: 14px;
+    }
+    .owyneed-intro {
+      font-size: 16px; color: #2C3E5A; line-height: 1.75;
+      margin-bottom: 20px; font-weight: 400;
+    }
+    .owyneed-list {
+      list-style: none; display: flex; flex-direction: column; gap: 12px;
+    }
+    .owyneed-list li {
+      font-size: 15px; color: #3D4F6A; line-height: 1.7;
+      padding-left: 20px; position: relative;
+    }
+    .owyneed-list li::before {
+      content: ''; position: absolute; left: 0; top: 10px;
+      width: 8px; height: 1px; background: #2E7D5E;
+    }
+    .owyneed-list li strong { color: #1A2640; }
+
+    /* ─────────────────────────────
+       THAILAND HISTORY
+    ───────────────────────────── */
+    .thailand-section {
+      background: linear-gradient(135deg, #111828 0%, #192540 50%, #111828 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .thailand-section::before,
+    .thailand-section::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, rgba(126,200,164,0.4) 70%, transparent 100%);
+    }
+    .thailand-section::before { top: 0; }
+    .thailand-section::after  { bottom: 0; }
+    .thailand-intro {
+      text-align: center; margin-bottom: var(--gap);
+    }
+    .thailand-intro .eyebrow { display: block; margin-bottom: 12px; }
+    .thailand-intro p {
+      max-width: 680px; margin: 14px auto 0;
+      font-size: 15px; color: var(--text-mid); line-height: 1.8; font-weight: 300;
+    }
+    .thailand-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: start;
+    }
+    .thailand-story {
+      background: var(--navy-card); border-radius: var(--radius);
+      border: 1px solid var(--border); padding: 48px 40px;
+      position: relative; overflow: hidden;
+    }
+    .thailand-story::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .thailand-story .eyebrow { display: block; margin-bottom: 16px; }
+    .thailand-story h2 { margin-bottom: 20px; }
+    .thailand-story p { font-size: 15px; line-height: 1.85; color: var(--text-mid); font-weight: 300; margin-bottom: 16px; }
+    .thailand-story p:last-child { margin-bottom: 0; }
+    .thailand-timeline {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .tl-item {
+      background: var(--navy-card); border-radius: var(--radius);
+      border: 1px solid var(--border); padding: 28px 32px;
+      display: grid; grid-template-columns: 80px 1fr; gap: 20px; align-items: start;
+      position: relative; overflow: hidden; transition: transform 0.3s;
+    }
+    .tl-item:hover { transform: translateX(4px); }
+    .tl-item::before {
+      content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+      background: var(--gold);
+    }
+    .tl-year {
+      font-family: 'Cormorant', serif; font-size: 36px; font-weight: 700;
+      color: var(--gold); line-height: 1;
+    }
+    .tl-body strong {
+      display: block; font-size: 16px; font-weight: 500;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .tl-body p { font-size: 14px; line-height: 1.7; color: var(--text-mid); font-weight: 300; margin: 0; }
+    @media (max-width: 768px) {
+      .thailand-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────
+       MARKET GROWTH
+    ───────────────────────────── */
+    .market-section { margin-top: var(--gap); }
+    .market-header {
+      text-align: center; margin-bottom: var(--gap);
+    }
+    .market-header .eyebrow { display: block; margin-bottom: 12px; }
+    .market-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap);
+      margin-bottom: var(--gap);
+    }
+    .market-card {
+      background: var(--navy-card); border-radius: var(--radius);
+      border: 1px solid var(--border); padding: 40px 36px;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .market-card:hover { transform: translateY(-3px); }
+    .market-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .market-flag {
+      font-size: 40px; margin-bottom: 16px; display: block;
+    }
+    .market-region {
+      font-family: 'Cormorant', serif; font-size: 28px; font-weight: 600;
+      color: var(--text); margin-bottom: 8px;
+    }
+    .market-yoy {
+      font-family: 'Cormorant', serif; font-size: 64px; font-weight: 700;
+      color: var(--gold); line-height: 1; margin-bottom: 12px;
+    }
+    .market-yoy span { font-size: 28px; vertical-align: super; }
+    .market-desc { font-size: 15px; line-height: 1.75; color: var(--text-mid); font-weight: 300; }
+    .market-stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap);
+    }
+    .market-stat {
+      background: var(--navy-card); border-radius: var(--radius);
+      border: 1px solid var(--border); padding: 32px 28px; text-align: center;
+    }
+    .market-stat-val {
+      font-family: 'Cormorant', serif; font-size: 48px; font-weight: 700;
+      color: var(--gold); line-height: 1; margin-bottom: 8px;
+    }
+    .market-stat-label { font-size: 14px; color: var(--text-mid); line-height: 1.5; }
+    @media (max-width: 768px) {
+      .market-grid { grid-template-columns: 1fr; }
+      .market-stats-row { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────
+       WHY THIS MARKET
+    ───────────────────────────── */
+    .why-market-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap);
+    }
+    .wm-card {
+      background: var(--navy-card); border-radius: var(--radius);
+      border: 1px solid var(--border); padding: 40px 36px;
+      position: relative; overflow: hidden; transition: transform 0.3s;
+    }
+    .wm-card:hover { transform: translateY(-3px); }
+    .wm-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .wm-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+    .wm-stat {
+      font-family: 'Cormorant', serif; font-size: 56px; font-weight: 700;
+      color: var(--gold); line-height: 1; margin-bottom: 10px;
+    }
+    .wm-title {
+      font-family: 'Cormorant', serif; font-size: 22px; font-weight: 600;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .wm-desc { font-size: 14px; line-height: 1.75; color: var(--text-mid); font-weight: 300; }
+    @media (max-width: 768px) {
+      .why-market-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────
+       CONTACT
+    ───────────────────────────── */
+    .contact-card {
+      background: var(--navy-card); border-radius: var(--radius);
+      display: grid; grid-template-columns: 1fr 1fr;
+      overflow: hidden; border: 1px solid var(--border);
+    }
+    .contact-l {
+      padding: 56px 48px;
+      border-right: 1px solid var(--border);
+    }
+    .contact-l .eyebrow { display: block; margin-bottom: 14px; }
+    .contact-l h2 {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(30px, 3.2vw, 50px); font-weight: 700;
+      line-height: 1.05; color: var(--text); margin-bottom: 16px;
+    }
+    .contact-l h2 em { font-style: italic; font-weight: 300; color: var(--text-mid); }
+    .contact-l p { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-mid); margin-bottom: 32px; }
+    .ci-stack { display: flex; flex-direction: column; gap: 16px; }
+    .ci-item .ci-lbl { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
+    .ci-item .ci-val { font-size: 15px; font-weight: 300; color: var(--text-mid); }
+
+    .contact-r { padding: 56px 48px; }
+    .cform { display: flex; flex-direction: column; gap: 10px; }
+    .crow { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    input, textarea, select {
+      width: 100%; background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-mid); color: var(--text);
+      font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300;
+      padding: 13px 15px; outline: none; border-radius: 8px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    input::placeholder, textarea::placeholder { color: var(--text-dim); }
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(196,151,90,0.5); background: rgba(255,255,255,0.06);
+    }
+    textarea { resize: none; height: 100px; }
+    select option { background: var(--navy-card); }
+    .csub {
+      width: 100%; background: #7EC8A4; color: #0E1119;
+      border: none; cursor: pointer; font-family: 'Jost', sans-serif;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 14px; border-radius: 8px;
+      transition: all 0.25s;
+    }
+    .csub:hover { background: #9DD8B8; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(126,200,164,0.3); }
+
+    /* ─────────────────────────────
+       FOOTER
+    ───────────────────────────── */
+    .footer-wrap {
+      padding: var(--gap) var(--pad) 0;
+    }
+    footer {
+      background: #EEEDE9; color: #1a1a1a;
+      border-radius: var(--radius) var(--radius) 0 0;
+      overflow: hidden;
+    }
+    .ft-top {
+      padding: 52px 48px 36px;
+      display: grid; grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 40px;
+    }
+    .ft-brand img { height: 38px; filter: invert(1) brightness(0.1); margin-bottom: 14px; display: block; }
+    .ft-brand p { font-size: 13px; font-weight: 300; line-height: 1.7; color: #666; max-width: 230px; }
+    .ft-col-title { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #999; margin-bottom: 14px; }
+    .ft-nav { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .ft-nav a { font-size: 13px; color: #444; text-decoration: none; transition: color 0.2s; }
+    .ft-nav a:hover { color: #1a1a1a; }
+    .ft-ci { margin-bottom: 10px; }
+    .ft-ci-lbl { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #999; }
+    .ft-ci-val { font-size: 13px; color: #444; margin-top: 1px; }
+    .ft-bottom {
+      border-top: 1px solid rgba(0,0,0,0.09);
+      padding: 20px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .ft-bottom p { font-size: 11px; color: #999; }
+    .ft-social { display: flex; gap: 8px; }
+    .ft-social a {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #1a1a1a; display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: transform 0.2s;
+    }
+    .ft-social a:hover { transform: translateY(-2px); }
+    .ft-social svg { width: 13px; height: 13px; fill: #EEEDE9; }
+
+    /* ─────────────────────────────
+       ANIMATIONS
+    ───────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s}
+    .d3{transition-delay:.3s} .d4{transition-delay:.4s} .d5{transition-delay:.5s}
+
+    /* ─────────────────────────────
+       RESPONSIVE — TABLET (≤1024px)
+    ───────────────────────────── */
+    /* ─────────────────────────────
+       RESPONSIVE — TABLET (≤1024px)
+    ───────────────────────────── */
+    @media (max-width: 1024px) {
+      nav { padding: 0 28px; }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        height: auto; max-height: none;
+      }
+      .hero-text-card { grid-column: 1; grid-row: 1; }
+      .hero-photo { grid-column: 1; grid-row: 2; height: 52vw; min-height: 280px; }
+      .hero-pic-card { grid-column: 1; grid-row: 3; }
+
+      .inv-banner { flex-direction: column; align-items: flex-start; gap: 16px; padding: 28px 32px; }
+      .inv-banner-title { white-space: normal; }
+      .products-grid { grid-template-columns: 1fr; }
+      .prod-img { min-height: 300px; }
+      .prod-img img { width: 240px; }
+
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .stat-cell:nth-child(2) { border-right: none; }
+      .stat-cell:nth-child(3) { border-top: 1px solid #B8C2CE; }
+      .stat-cell:nth-child(4) { border-top: 1px solid #B8C2CE; border-right: none; }
+
+      .detail-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .why-market-grid { grid-template-columns: 1fr 1fr; }
+      .thailand-grid { grid-template-columns: 1fr; }
+      .market-grid { grid-template-columns: 1fr; }
+      .market-stats-row { grid-template-columns: 1fr 1fr; }
+
+      .owyneed-card { grid-template-columns: 1fr; }
+      .owyneed-img { min-height: 300px; }
+
+      .contact-card { grid-template-columns: 1fr; }
+      .contact-l { border-right: none; border-bottom: 1px solid var(--border); padding: 40px 36px; }
+      .contact-r { padding: 40px 36px; }
+
+      .ft-top { grid-template-columns: 1fr 1fr; padding: 40px 36px 28px; }
+      .ft-bottom { padding: 18px 36px; }
+    }
+
+    /* ─────────────────────────────
+       RESPONSIVE — MOBILE (≤768px)
+    ───────────────────────────── */
+    @media (max-width: 768px) {
+      :root { --pad: 16px; --gap: 12px; }
+
+      nav { padding: 0 20px; height: 60px; }
+      body { padding-top: 60px; }
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .nav-logo img { height: 28px; }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        height: auto; max-height: none;
+      }
+      .hero-text-card { grid-column: 1; grid-row: 1; padding: 36px 24px; }
+      .hero-title { font-size: clamp(32px, 9vw, 52px); }
+      .hero-sub { font-size: 14px; max-width: 100%; }
+      .hero-photo { grid-column: 1; grid-row: 2; height: 70vw; min-height: 280px; }
+      .hero-photo img { object-position: 50% 40%; }
+      .hero-pic-card { grid-column: 1; grid-row: 3; grid-template-columns: 1fr 1.1fr; }
+
+      .inv-banner { padding: 24px 20px; gap: 12px; }
+      .inv-banner-title { font-size: 28px; }
+
+      .prod-card { grid-template-columns: 1fr; }
+      .prod-img { padding: 28px; min-height: 320px; }
+      .prod-img img { width: 260px; }
+
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .stat-cell { padding: 24px 16px; }
+      .stat-num { font-size: 36px; }
+
+      .detail-card { padding: 28px 20px; }
+      .detail-grid { grid-template-columns: 1fr; }
+
+      .pillars-grid { grid-template-columns: 1fr; }
+      .why-market-grid { grid-template-columns: 1fr; }
+      .wm-stat { font-size: 44px; }
+
+      .thailand-grid { grid-template-columns: 1fr; }
+      .thailand-story { padding: 32px 24px; }
+      .tl-item { padding: 20px 24px; }
+
+      .market-grid { grid-template-columns: 1fr; }
+      .market-stats-row { grid-template-columns: 1fr; }
+      .market-yoy { font-size: 48px; }
+
+      .owyneed-card { grid-template-columns: 1fr; }
+      .owyneed-text { padding: 32px 24px; }
+      .owyneed-img { min-height: 260px; }
+
+      .contact-card { grid-template-columns: 1fr; }
+      .contact-l { border-right: none; border-bottom: 1px solid var(--border); padding: 32px 24px; }
+      .contact-r { padding: 32px 24px; }
+      .crow { grid-template-columns: 1fr; }
+
+      .ft-top { grid-template-columns: 1fr 1fr; padding: 32px 20px 20px; }
+      .ft-bottom { flex-direction: column; gap: 12px; padding: 16px 20px; text-align: center; }
+      .ft-social { justify-content: center; }
+
+      .why-header { padding: 32px 24px; }
+      .big-title { font-size: clamp(28px, 7vw, 44px); }
+
+      .section-pad { padding: var(--pad); }
+    }
+
+    /* ─────────────────────────────
+       RESPONSIVE — SMALL (≤480px)
+    ───────────────────────────── */
+    @media (max-width: 480px) {
+      :root { --pad: 12px; --gap: 10px; }
+
+      nav { padding: 0 16px; }
+
+      .hero-text-card { padding: 28px 18px; }
+      .hero-title { font-size: clamp(28px, 10vw, 44px); }
+      .hero-pic-card { grid-template-columns: 1fr; }
+      .pic-visual { min-height: 240px; height: 240px; }
+      .pic-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+      .inv-banner { padding: 20px 16px; }
+      .prod-img img { width: 220px; }
+
+      .stats-row { grid-template-columns: 1fr; }
+      .stat-cell { border-right: none !important; border-top: 1px solid #B8C2CE; }
+      .stat-cell:first-child { border-top: none; }
+
+      .tl-item { grid-template-columns: 60px 1fr; gap: 14px; }
+      .tl-year { font-size: 28px; }
+
+      .wm-stat { font-size: 36px; }
+      .market-yoy { font-size: 40px; }
+
+      .owyneed-text { padding: 24px 16px; }
+      .owyneed-img { min-height: 220px; }
+
+      .contact-l, .contact-r { padding: 28px 16px; }
+      .ft-top { grid-template-columns: 1fr; padding: 28px 16px 16px; }
+      .ft-bottom { padding: 14px 16px; }
+      .why-header { padding: 28px 18px; }
+
+      .pillar { padding: 28px 20px; }
+      .pil-title { font-size: 20px; }
+      .pil-text { font-size: 14px; }
+
+      .thailand-story { padding: 24px 18px; }
+      .owyneed-title { font-size: 22px; }
+      .owyneed-intro { font-size: 14px; }
+      .owyneed-list li { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <img src="brand_assets/Libidiol (Logo).png" alt="Libidiol">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about-anchor">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#why">Investment</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <a href="#contact" class="nav-cta">Request Deck</a>
+    <button class="nav-burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- mobile drawer -->
+<div class="nav-drawer" id="drawer">
+  <a href="#hero" onclick="closeDrawer()">Home</a>
+  <a href="#about-anchor" onclick="closeDrawer()">About</a>
+  <a href="#products" onclick="closeDrawer()">Products</a>
+  <a href="#why" onclick="closeDrawer()">Investment Case</a>
+  <a href="#contact" onclick="closeDrawer()">Contact</a>
+  <a href="#contact" class="drawer-cta" onclick="closeDrawer()">Request Deck</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-grid">
+
+    <!-- top-left: headline -->
+    <div class="hero-text-card neon-box">
+      <div class="hero-eyebrow">Medical Investment Opportunity · 2026</div>
+      <h1 class="hero-title">
+        Future of<br>Men's Wellness
+        <em>Own Your Part</em>
+      </h1>
+      <p class="hero-sub">
+        Own part of a revolutionary men's health future — premium supplements
+        backed by nature and science, in a $26 billion global market.
+      </p>
+      <a href="#contact" class="btn-pill gold">Explore Opportunity</a>
+    </div>
+
+    <!-- right: doctor photo (spans both rows) -->
+    <div id="about-anchor" class="hero-photo neon-box">
+      <img src="brand_assets/Laboratory.jpg" alt="Medical Research">
+      <div class="hero-photo-tags">
+        <span class="htag blue">Science-Backed Formula</span>
+        <span class="htag green">Natural Ingredients</span>
+      </div>
+    </div>
+
+    <!-- bottom-left: pic + text -->
+    <div class="hero-pic-card neon-box">
+      <div class="pic-visual">
+        <img src="brand_assets/bio'chem'.jpg" alt="Research Laboratory">
+      </div>
+      <div class="pic-text">
+        <span class="pt-label">About Libidiol</span>
+        <h3>Unleash Nature's Power for Passionate Living</h3>
+        <p>Premium natural formulas with science-driven development — building a portfolio that resonates globally and delivers results.</p>
+        <a href="#products">Discover Products →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ STATISTICS ══ -->
+<div id="statistics" class="section-pad">
+  <div class="stats-row reveal neon-box">
+    <div class="stat-cell">
+      <div class="stat-num"><span>$</span>26<span>B+</span></div>
+      <div class="stat-lbl">Global Market Size</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">8.4<span>%</span></div>
+      <div class="stat-lbl">Annual Growth Rate</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">14<span>%</span></div>
+      <div class="stat-lbl">Natural Supplements YoY</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">3<span>B+</span></div>
+      <div class="stat-lbl">Addressable Consumers</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker-wrap">
+  <div class="ticker-bar">
+    <div class="ticker-track">
+      <div class="ti">Men's Health Market <span class="v">$26.2B</span></div>
+      <div class="ti">Global CAGR <span class="v">8.4%</span></div>
+      <div class="ti">Natural Supplements <span class="v">+14% YoY</span></div>
+      <div class="ti">Portfolio <span class="v">2 SKUs</span></div>
+      <div class="ti">Markets <span class="v">EU · MENA · US</span></div>
+      <div class="ti">Formula <span class="v">Natural · Dietary</span></div>
+      <div class="ti">Men's Health Market <span class="v">$26.2B</span></div>
+      <div class="ti">Global CAGR <span class="v">8.4%</span></div>
+      <div class="ti">Natural Supplements <span class="v">+14% YoY</span></div>
+      <div class="ti">Portfolio <span class="v">2 SKUs</span></div>
+      <div class="ti">Markets <span class="v">EU · MENA · US</span></div>
+      <div class="ti">Formula <span class="v">Natural · Dietary</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ INVESTMENT PRODUCT BANNER ══ -->
+<div class="section-pad reveal">
+  <div class="inv-banner neon-box">
+    <h2 class="inv-banner-title">Investment <span>Products</span></h2>
+    <p class="inv-banner-sub">
+      Two premium men's health supplements — each targeting a distinct consumer
+      segment, backed by natural formulas and proven market demand.
+    </p>
+    <a href="#detail" class="btn-pill" style="flex-shrink:0;color:#1A2640;border-color:#8B9DB8;">View Details →</a>
+  </div>
+</div>
+
+<!-- ══ PRODUCTS ══ -->
+<div id="products" class="section-pad">
+  <div class="products-grid">
+    <div class="prod-card green reveal neon-box">
+      <div class="prod-img">
+        <img src="brand_assets/VAROMAX PRODUCT PICTURE.png" alt="VAROMAX">
+      </div>
+      <div class="prod-info">
+        <span class="prod-tag">Clinical · Natural</span>
+        <h3 class="prod-name">VAROMAX</h3>
+        <p class="prod-sub">Natural Men's Enhancement Formula</p>
+        <p class="prod-desc">Precision-driven vitality formula in pharmaceutical-grade packaging — built on trust, transparency, and clinically-inspired ingredients.</p>
+        <ul class="prod-feats">
+          <li>Natural enhancement formula</li>
+          <li>Clinically-inspired ingredients</li>
+          <li>Pharmaceutical-grade packaging</li>
+        </ul>
+        <div class="prod-purpose">
+          <div class="prod-purpose-item"><span class="pp-label">Purpose</span><span class="pp-text">Stamina, endurance, and physical drive.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label">Best for</span><span class="pp-text">Men needing lasting performance and physical support during activity.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label">Duration</span><span class="pp-text">Effective for up to 24 hours.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label">Safety</span><span class="pp-text">100% herbal — side effect free.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card blue reveal d1 neon-box">
+      <div class="prod-img">
+        <img src="brand_assets/LIBIRA PRODUCT PICTURE.png" alt="LIBIRA">
+      </div>
+      <div class="prod-info">
+        <span class="prod-tag">Fast Acting · 30 Min</span>
+        <h3 class="prod-name">LIBIRA</h3>
+        <p class="prod-sub">Natural Men's Enhancement Formula</p>
+        <p class="prod-desc">Our flagship fast-acting supplement — bold, effective, iconic. Trusted for its dramatic results and premium metallic blue packaging.</p>
+        <ul class="prod-feats">
+          <li>Works in as little as 30 minutes</li>
+          <li>Natural active ingredients</li>
+          <li>Premium metallic blue packaging</li>
+        </ul>
+        <div class="prod-purpose">
+          <div class="prod-purpose-item"><span class="pp-label">Purpose</span><span class="pp-text">Confidence, desire, and intimate energy.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label">Best for</span><span class="pp-text">Men looking to enhance mood, blood flow, and intimacy experience.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label">Duration</span><span class="pp-text">Effective for up to 24 hours.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label">Safety</span><span class="pp-text">100% herbal — side effect free.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ONLY WHEN YOU NEED IT ══ -->
+<div class="section-pad">
+  <div class="owyneed-card reveal">
+    <div class="owyneed-text">
+      <h3 class="owyneed-title">Only When You Need It</h3>
+      <p class="owyneed-intro">Unlike daily vitamins or long-term hormone therapies, Libira and Varomax are event-based — taken only when needed. This makes them:</p>
+      <ul class="owyneed-list">
+        <li><strong>Flexible</strong> – men can choose when they want the boost, whether it's a special evening, weekend trip, or after lots of drinks and pub visits to get that boost.</li>
+        <li><strong>Practical</strong> – no need to commit to daily supplementation or worry about skipping doses.</li>
+        <li><strong>High repeat demand</strong> – consumable format creates reliable reorder cycles and long-term customer value.</li>
+        <li><strong>Large addressable market</strong> – hundreds of millions of men globally experience sexual health concerns, supporting strong long-term growth potential.</li>
+      </ul>
+    </div>
+    <div class="owyneed-img">
+      <img src="brand_assets/20260311_1903_Image Generation_simple_compose_01kkecf3npem1vdbb36x2zgenp.png" alt="Doctor with herbs">
+    </div>
+  </div>
+</div>
+
+<!-- ══ DETAIL ══ -->
+<div id="detail" class="section-pad">
+  <div class="detail-grid">
+    <div class="detail-card green reveal neon-box">
+      <div class="dc-head">
+        <img src="brand_assets/VAROMAX PRODUCT PICTURE.png" alt="VAROMAX">
+        <div>
+          <p class="dc-label">Varomax</p>
+          <h3>The Clinical Choice</h3>
+        </div>
+      </div>
+      <div class="dc-divider"></div>
+      <div class="dc-points">
+        <div class="dc-point">
+          <span class="dc-num">01</span>
+          <div class="dc-body">
+            <strong>Natural Enhancement Formula</strong>
+            <p>Precision-blended ingredients targeting men's vitality through natural, scientifically-selected compounds.</p>
+          </div>
+        </div>
+        <div class="dc-point">
+          <span class="dc-num">02</span>
+          <div class="dc-body">
+            <strong>Pharmaceutical-Grade Trust</strong>
+            <p>Clean white packaging signals clinical credibility — building consumer confidence and repeat purchases.</p>
+          </div>
+        </div>
+        <div class="dc-point">
+          <span class="dc-num">03</span>
+          <div class="dc-body">
+            <strong>Premium Market Positioning</strong>
+            <p>Positioned in the growing natural health category with strong margins and scalable production economics.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-card blue reveal d1 neon-box">
+      <div class="dc-head">
+        <img src="brand_assets/LIBIRA PRODUCT PICTURE.png" alt="LIBIRA">
+        <div>
+          <p class="dc-label">Libira</p>
+          <h3>The Bold Performer</h3>
+        </div>
+      </div>
+      <div class="dc-divider"></div>
+      <div class="dc-points">
+        <div class="dc-point">
+          <span class="dc-num">01</span>
+          <div class="dc-body">
+            <strong>Fast Acting — 30 Minutes</strong>
+            <p>Rapid-onset formula designed for men who demand results. Effective within 30 minutes of consumption.</p>
+          </div>
+        </div>
+        <div class="dc-point">
+          <span class="dc-num">02</span>
+          <div class="dc-body">
+            <strong>Bold Brand Recognition</strong>
+            <p>Iconic metallic blue packaging creates instant shelf standout and strong consumer recall across all markets.</p>
+          </div>
+        </div>
+        <div class="dc-point">
+          <span class="dc-num">03</span>
+          <div class="dc-body">
+            <strong>Flagship Revenue Driver</strong>
+            <p>As our hero product, LIBIRA leads customer acquisition and drives the highest volume in our portfolio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WHY THIS MARKET ══ -->
+<div class="section-pad">
+  <div class="why-header reveal" style="margin-bottom:var(--gap);">
+    <span class="eyebrow" style="font-size:16px;color:#2E7D5E;">The Business Case</span>
+    <h2 class="big-title" style="color:#1A2640;">Why <em style="color:#2E7D5E;">This Market Works</em></h2>
+  </div>
+  <div class="why-market-grid">
+    <div class="wm-card reveal">
+      <div class="wm-stat">5×</div>
+      <div class="wm-title">High Margin Product</div>
+      <p class="wm-desc">Men's wellness supplements command exceptional margins — up to 5× cost of goods. Low manufacturing complexity combined with premium positioning means strong profitability at every unit sold.</p>
+    </div>
+    <div class="wm-card reveal d1">
+      <div class="wm-stat">Monthly</div>
+      <div class="wm-title">High Repeat Purchase Rate</div>
+      <p class="wm-desc">Customers reorder at least once a month. Unlike one-time purchases, supplements build recurring revenue streams — creating predictable cash flow and strong customer lifetime value.</p>
+    </div>
+    <div class="wm-card reveal d2">
+      <div class="wm-stat">800M+</div>
+      <div class="wm-title">Men with ED & Premature Ejaculation</div>
+      <p class="wm-desc">The scale of need is enormous. Erectile dysfunction (ED) affects approximately <strong>322 million men worldwide</strong>. Premature ejaculation (PE) affects <strong>120–150 million men</strong> using a strict clinical definition — rising to 610–920 million on a broader self-reported basis. Combined, these conditions represent one of the largest underserved health markets in the world.</p>
+      <p class="wm-desc" style="margin-top:10px;">This high-need demographic actively seeks effective, discreet, and natural solutions — exactly what Libidiol delivers.</p>
+    </div>
+    <div class="wm-card reveal d3">
+      <div class="wm-stat">20–40%</div>
+      <div class="wm-title">Recreational Enhancement Demand</div>
+      <p class="wm-desc">20–40% of enhancement product users have no medical condition — they purchase purely to elevate performance, confidence, and intimacy experience. This growing recreational segment broadens the addressable market significantly beyond clinical need.</p>
+      <p class="wm-desc" style="margin-top:12px;">Libidiol's herbal formula is side-effect free and long-lasting, making it the perfect fit for this audience. Alongside recreational users, we also capture men who have experienced unwanted side effects from pharmaceutical alternatives and are actively seeking a cleaner, more natural solution that actually works.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ THAILAND HISTORY ══ -->
+<div class="section-pad thailand-section">
+  <div class="thailand-intro reveal">
+    <span class="eyebrow">Our Story</span>
+    <h2 class="big-title">Born in <em>Thailand</em></h2>
+    <p>From a single market with a big idea — to pharmacies, global shipments, and now entering the EU and USA. This is how Libidiol was built.</p>
+  </div>
+  <div class="thailand-grid">
+    <div class="thailand-story reveal">
+      <p>Three years ago, Libidiol was founded in Thailand with a simple conviction: men's vitality deserved a premium, natural, and clinically-informed solution. Starting from scratch in one of Southeast Asia's most dynamic wellness markets, we built our formulas, our brand, and our distribution network from the ground up.</p>
+      <p>Last year marked a turning point. Growth accelerated exponentially — our products are now stocked across pharmacies in Bangkok and Pattaya, two of Thailand's most commercially active cities, giving us consistent brick-and-mortar presence and brand visibility in high-footfall locations.</p>
+      <p>A significant and unexpected growth driver has been the expat and tourist community. Western men living in Thailand and visitors from Europe and the USA discovered our products, experienced real results, and kept ordering — even after returning home. Shipments are now dispatched directly from Thailand to customers across the globe, validating international product-market fit before we even formally enter those markets.</p>
+    </div>
+    <div class="thailand-timeline">
+      <div class="tl-item reveal d1">
+        <div class="tl-year">Y1</div>
+        <div class="tl-body">
+          <strong>Brand &amp; Formula Launch</strong>
+          <p>Founded in Thailand. LIBIRA and VAROMAX formulas developed, tested, and brought to market. Initial retail and online sales established.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal d2">
+        <div class="tl-year">Y2</div>
+        <div class="tl-body">
+          <strong>Pharmacy Network Expansion</strong>
+          <p>Products enter pharmacy chains across Pattaya and Bangkok. Growing word-of-mouth among expat communities and inbound tourists drives organic demand.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal d3">
+        <div class="tl-year">Y3</div>
+        <div class="tl-body">
+          <strong>Exponential Growth &amp; Global Orders</strong>
+          <p>Sales surged year-on-year. Western expats and tourists returning home began ordering online, triggering direct international shipments from Thailand — an early proof of global demand.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal d4">
+        <div class="tl-year">Next</div>
+        <div class="tl-body">
+          <strong>EU &amp; USA Market Entry</strong>
+          <p>With a proven product, growing customer base, and validated international demand, Libidiol is now ready to formally enter the European Union and United States markets.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WHY INVEST ══ -->
+<div id="why" class="section-pad">
+  <div class="why-header reveal">
+    <span class="eyebrow">Investment Case</span>
+    <h2 class="big-title">Why <em>Invest in Libidiol</em></h2>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar reveal neon-box"><div class="pil-num">01</div><h3 class="pil-title">Differentiated Portfolio</h3><p class="pil-text">Two distinct products serve different consumer segments and price points, reducing risk while maximising addressable market reach.</p></div>
+    <div class="pillar reveal d1 neon-box"><div class="pil-num">02</div><h3 class="pil-title">Natural Formula Positioning</h3><p class="pil-text">Consumer demand for natural health solutions is accelerating globally. Our formulas are aligned with this structural shift.</p></div>
+    <div class="pillar reveal d2 neon-box"><div class="pil-num">03</div><h3 class="pil-title">Scalable Distribution</h3><p class="pil-text">Our go-to-market strategy spans e-commerce, pharmacy channels, adult wellness channels, and international distribution partnerships.</p></div>
+    <div class="pillar reveal d3 neon-box"><div class="pil-num">04</div><h3 class="pil-title">Premium Brand Identity</h3><p class="pil-text">Strong visual identity drives shelf standout and repeat purchase intent across all target markets.</p></div>
+    <div class="pillar reveal d4 neon-box"><div class="pil-num">05</div><h3 class="pil-title">High-Margin Economics</h3><p class="pil-text">Dietary supplements enjoy some of the best unit economics in consumer goods — lean manufacturing and high gross margins.</p></div>
+    <div class="pillar reveal d5 neon-box"><div class="pil-num">06</div><h3 class="pil-title">Early Mover Advantage</h3><p class="pil-text">Having established a strong foundation in Thailand, we are now expanding into the European Union and the United States — targeting two of the world's largest and most lucrative supplement markets.</p></div>
+  </div>
+</div>
+
+<!-- ══ MARKET GROWTH ══ -->
+<div class="section-pad market-section">
+  <div class="market-header reveal">
+    <span class="eyebrow">Market Opportunity</span>
+    <h2 class="big-title">Men's Vitality — <em>Explosive Growth</em></h2>
+    <p style="max-width:640px;margin:16px auto 0;font-size:16px;color:var(--text-mid);line-height:1.8;">The men's sexual wellness and vitality supplement category is one of the fastest-growing segments in consumer health. EU and US markets are recording double-digit year-over-year expansion, driven by rising consumer awareness, destigmatisation of men's health, and growing demand for natural alternatives.</p>
+  </div>
+
+  <div class="market-grid">
+    <div class="market-card reveal">
+      <span class="market-flag">🇪🇺</span>
+      <div class="market-region">European Union</div>
+      <div class="market-yoy"><span>+</span>18<span>% YoY</span></div>
+      <p class="market-desc">The EU men's health supplement market is growing at ~18% annually, fuelled by an ageing male population, rising disposable income, and expanding e-commerce penetration across Germany, France, the Netherlands, and Scandinavia. Regulatory acceptance of natural botanical formulas provides a clear path to shelf and digital distribution.</p>
+    </div>
+    <div class="market-card reveal d1">
+      <span class="market-flag">🇺🇸</span>
+      <div class="market-region">United States</div>
+      <div class="market-yoy"><span>+</span>22<span>% YoY</span></div>
+      <p class="market-desc">The US men's vitality segment is the world's largest and most dynamic, growing at ~22% per year. Direct-to-consumer channels, subscription models, and influencer-led marketing are accelerating adoption. Consumers increasingly seek clinically-informed, natural formulas — a space where Libidiol is precisely positioned.</p>
+    </div>
+  </div>
+
+  <div class="market-stats-row">
+    <div class="market-stat reveal">
+      <div class="market-stat-val">$4.8B</div>
+      <div class="market-stat-label">Global men's vitality supplement market size (2025)</div>
+    </div>
+    <div class="market-stat reveal d1">
+      <div class="market-stat-val">+19%</div>
+      <div class="market-stat-label">Combined EU &amp; USA average YoY growth rate</div>
+    </div>
+    <div class="market-stat reveal d2">
+      <div class="market-stat-val">$9.2B</div>
+      <div class="market-stat-label">Projected market value by 2030</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<div id="contact" class="section-pad">
+  <div class="contact-card reveal neon-box">
+    <div class="contact-l">
+      <span class="eyebrow">Get In Touch</span>
+      <h2 style="margin-top:14px;">Request the<br><em>Investment Deck</em></h2>
+      <p style="margin-top:16px;">Complete the form and our team will send you the full investor prospectus, financial projections, and product dossier.</p>
+      <div class="ci-stack">
+        <div class="ci-item"><div class="ci-lbl">Brand</div><div class="ci-val">Libidiol — Unleash Nature's Power for Passionate Living</div></div>
+        <div class="ci-item"><div class="ci-lbl">Products</div><div class="ci-val">LIBIRA · VAROMAX</div></div>
+        <div class="ci-item"><div class="ci-lbl">Investment Type</div><div class="ci-val">Equity · Partnership · Distribution</div></div>
+        <div class="ci-item"><div class="ci-lbl">Enquiries</div><div class="ci-val">office@libidiol.com</div></div>
+      </div>
+    </div>
+    <div class="contact-r">
+      <form class="cform" id="investForm" onsubmit="handleSubmit(event)">
+        <input type="hidden" name="_replyto" value="">
+        <input type="hidden" name="_subject" value="New Investment Enquiry — Libidiol">
+        <div class="crow">
+          <input type="text" name="first_name" placeholder="First Name" required>
+          <input type="text" name="last_name" placeholder="Last Name" required>
+        </div>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="text" name="company" placeholder="Company / Fund Name">
+        <select name="investment_range">
+          <option value="" disabled selected>Investment Range</option>
+          <option>Under $50,000</option>
+          <option>$50,000 – $250,000</option>
+          <option>$250,000 – $1M</option>
+          <option>$1M – $5M</option>
+          <option>$5M+</option>
+        </select>
+        <textarea name="message" placeholder="Tell us about your interest in Libidiol..."></textarea>
+        <button type="submit" class="csub">Send Request →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="footer-wrap">
+  <footer>
+    <div class="ft-top">
+      <div class="ft-brand">
+        <img src="brand_assets/Libidiol (Logo).png" alt="Libidiol">
+        <p>Pioneering premium men's health supplements. Natural formulas, clinically inspired, globally distributed.</p>
+      </div>
+      <div>
+        <p class="ft-col-title">Navigation</p>
+        <ul class="ft-nav">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about-anchor">About</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#statistics">Market Stats</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="ft-col-title">Contact</p>
+        <div class="ft-ci"><div class="ft-ci-lbl">Products</div><div class="ft-ci-val">LIBIRA · VAROMAX</div></div>
+        <div class="ft-ci"><div class="ft-ci-lbl">Category</div><div class="ft-ci-val">Men's Health Supplements</div></div>
+        <div class="ft-ci"><div class="ft-ci-lbl">Enquiries</div><div class="ft-ci-val">office@libidiol.com</div></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 Libidiol. All rights reserved. For investor enquiries only.</p>
+      <div class="ft-social">
+        <a href="https://www.facebook.com/libidiol.thailand/" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.linkedin.com/company/varomax/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://wa.me/66858576671" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Nav scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+  // Hamburger
+  const burger = document.getElementById('burger');
+  const drawer = document.getElementById('drawer');
+  burger.addEventListener('click', () => drawer.classList.toggle('open'));
+  document.addEventListener('click', e => {
+    if (!navbar.contains(e.target) && !drawer.contains(e.target)) drawer.classList.remove('open');
+  });
+  function closeDrawer() { drawer.classList.remove('open'); }
+
+  // Reveal on scroll
+  const revEls = document.querySelectorAll('.reveal');
+  const revObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  revEls.forEach(el => revObs.observe(el));
+
+  // Counter animation
+  document.querySelectorAll('.stat-num').forEach(el => {
+    const cObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const text = el.innerText;
+        const match = text.match(/[\d.]+/);
+        if (!match) return;
+        const target = parseFloat(match[0]);
+        const prefix = text.includes('$') ? '<span>$</span>' : '';
+        const suffix = text.replace(/[$\d.]+/, '');
+        let c = 0; const step = target / 60;
+        const t = setInterval(() => {
+          c = Math.min(c + step, target);
+          el.innerHTML = prefix + (Number.isInteger(target) ? Math.round(c) : c.toFixed(1)) + suffix;
+          if (c >= target) clearInterval(t);
+        }, 16);
+        cObs.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    cObs.observe(el);
+  });
+
+  // Form submit — sends to office@libidiol.com via Formspree
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.csub');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const data = new FormData(form);
+    // Set _replyto to the submitter's email
+    data.set('_replyto', data.get('email'));
+
+    try {
+      const res = await fetch('https://formspree.io/f/xzdjrzoe', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = 'Request Sent ✓';
+        btn.style.background = '#7EC8A4';
+        btn.style.color = '#0E1119';
+        form.reset();
+      } else {
+        btn.textContent = 'Error — try again';
+        btn.style.background = '#c0392b';
+        btn.style.color = '#fff';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error — try again';
+      btn.style.background = '#c0392b';
+      btn.style.color = '#fff';
+      btn.disabled = false;
+    }
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a =>
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    })
+  );
+</script>
+</body>
+</html>

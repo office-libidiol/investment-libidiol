@@ -145,6 +145,32 @@
     .nav-drawer .drawer-cta:hover { background: #1ebe58; }
 
     /* ─────────────────────────────
+       MIO BANNER
+    ───────────────────────────── */
+    .mio-banner {
+      width: 100%;
+      background: #C8973A;
+      color: #0E1119;
+      text-align: center;
+      font-family: 'Jost', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    .mio-line {
+      flex: 1;
+      height: 2px;
+      background: rgba(0,0,0,0.25);
+      max-width: 120px;
+    }
+
+    /* ─────────────────────────────
        HERO
     ───────────────────────────── */
     #hero {
@@ -1074,13 +1100,19 @@
   <a href="#contact" class="drawer-cta" onclick="closeDrawer()">Request Deck</a>
 </div>
 
+<!-- ══ MIO BANNER ══ -->
+<div class="mio-banner">
+  <span class="mio-line"></span>
+  Medical Investment Opportunity · 2026
+  <span class="mio-line"></span>
+</div>
+
 <!-- ══ HERO ══ -->
 <section id="hero">
   <div class="hero-grid">
 
     <!-- top-left: headline -->
     <div class="hero-text-card neon-box">
-      <div class="hero-eyebrow">Medical Investment Opportunity · 2026</div>
       <h1 class="hero-title">
         Future of<br>Men's Wellness
         <em>Own Your Part</em>

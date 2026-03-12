@@ -76,7 +76,7 @@
     }
     nav.scrolled { background: rgba(10,13,20,0.99); }
 
-    .nav-logo img { height: 120px; filter: brightness(1.1); display: block; }
+    .nav-logo img { height: 90px; display: block; mix-blend-mode: screen; }
 
     .nav-links {
       display: flex; align-items: center; gap: 4px;
@@ -869,7 +869,7 @@
       display: grid; grid-template-columns: 1.3fr 1fr 1fr;
       gap: 40px;
     }
-    .ft-brand img { height: 80px; margin-bottom: 14px; display: block; }
+    .ft-brand img { height: 80px; margin-bottom: 14px; display: block; mix-blend-mode: multiply; max-width: 100%; }
     .ft-brand p { font-size: 18px; font-weight: 500; line-height: 1.7; color: #000; max-width: 280px; }
     .ft-col-title { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #999; margin-bottom: 14px; }
     .ft-nav { list-style: none; display: flex; flex-direction: column; gap: 9px; }
@@ -962,7 +962,7 @@
       body { padding-top: 60px; }
       .nav-links { display: none; }
       .nav-burger { display: flex; }
-      .nav-logo img { height: 28px; }
+      .nav-logo img { height: 60px; }
 
       .hero-grid {
         grid-template-columns: 1fr;
@@ -1055,6 +1055,8 @@
 
       .contact-l, .contact-r { padding: 28px 16px; }
       .ft-top { grid-template-columns: 1fr; padding: 28px 16px 16px; }
+      .ft-brand img { height: 60px; }
+      .ft-brand p { font-size: 15px; max-width: 100%; }
       .ft-bottom { padding: 14px 16px; }
       .why-header { padding: 28px 18px; }
 

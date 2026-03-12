@@ -16,8 +16,8 @@
       --navy-card:  #2A3F6A;
       --blue:       #2B72F0;
       --teal:       #1FAE72;
-      --gold:       #7EC8A4;
-      --gold-light: #9DD8B8;
+      --gold:       #25D366;
+      --gold-light: #1ebe58;
       --text:       #EDF0F7;
       --text-mid:   #ffffff;
       --text-dim:   rgba(255,255,255,0.7);
@@ -299,11 +299,11 @@
     }
     .btn-pill:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.25); }
     .btn-pill.gold {
-      background: #7EC8A4; border-color: #7EC8A4;
+      background: #25D366; border-color: #25D366;
       color: #0E1119; font-weight: 600;
     }
     .btn-pill.gold:hover {
-      background: #9DD8B8; border-color: #9DD8B8;
+      background: #1ebe58; border-color: #1ebe58;
       transform: translateY(-1px); box-shadow: 0 6px 20px rgba(126,200,164,0.35);
     }
 
@@ -818,13 +818,13 @@
     textarea { resize: none; height: 100px; }
     select option { background: var(--navy-card); }
     .csub {
-      width: 100%; background: #7EC8A4; color: #0E1119;
+      width: 100%; background: #25D366; color: #0E1119;
       border: none; cursor: pointer; font-family: 'Jost', sans-serif;
       font-size: 13px; font-weight: 600; letter-spacing: 0.1em;
       text-transform: uppercase; padding: 14px; border-radius: 8px;
       transition: all 0.25s;
     }
-    .csub:hover { background: #9DD8B8; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(126,200,164,0.3); }
+    .csub:hover { background: #1ebe58; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(126,200,164,0.3); }
 
     /* ─────────────────────────────
        FOOTER
@@ -1584,7 +1584,7 @@
       });
       if (res.ok) {
         btn.textContent = 'Request Sent ✓';
-        btn.style.background = '#7EC8A4';
+        btn.style.background = '#25D366';
         btn.style.color = '#0E1119';
         form.reset();
       } else {

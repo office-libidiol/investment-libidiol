@@ -149,6 +149,34 @@
     }
     .nav-drawer .drawer-cta:hover { background: #1ebe58; }
 
+    /* ─── LANGUAGE SWITCHER ─── */
+    .lang-switch { position: relative; flex-shrink: 0; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 5px;
+      background: rgba(255,255,255,0.08); border: 1px solid var(--border-mid);
+      color: var(--text-mid); cursor: pointer; border-radius: 20px;
+      padding: 7px 12px; font-size: 12px; font-family: 'Jost', sans-serif;
+      white-space: nowrap;
+    }
+    .lang-btn:hover { background: rgba(255,255,255,0.15); }
+    .lang-arrow { font-size: 9px; opacity: 0.6; }
+    .lang-menu {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: rgba(28,34,53,0.98); backdrop-filter: blur(20px);
+      border: 1px solid var(--border-mid); border-radius: 10px;
+      padding: 6px; min-width: 148px; z-index: 400;
+    }
+    .lang-menu.open { display: block; }
+    .lang-menu button {
+      display: block; width: 100%; text-align: left;
+      background: none; border: none; color: var(--text-mid);
+      cursor: pointer; padding: 9px 12px; border-radius: 6px;
+      font-size: 13px; font-family: 'Jost', sans-serif; font-weight: 300;
+    }
+    .lang-menu button:hover { background: rgba(255,255,255,0.08); }
+    .lang-menu button.active-lang { color: var(--gold); font-weight: 600; }
+    @media (max-width: 768px) { .lang-code-text { display: none; } }
+
     /* ─────────────────────────────
        MIO BANNER
     ───────────────────────────── */
@@ -1100,14 +1128,27 @@
     <span class="nav-logo-text">LIBIDIOL</span>
   </div>
   <ul class="nav-links">
-    <li><a href="#hero">Home</a></li>
-    <li><a href="#about-anchor">About</a></li>
-    <li><a href="#products">Products</a></li>
-    <li><a href="#why">Investment</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#hero" data-i18n="nav-home">Home</a></li>
+    <li><a href="#about-anchor" data-i18n="nav-about">About</a></li>
+    <li><a href="#products" data-i18n="nav-products">Products</a></li>
+    <li><a href="#why" data-i18n="nav-investment">Investment</a></li>
+    <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:8px;">
-    <a href="#contact" class="nav-cta">Request Deck</a>
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
+        <span id="langFlag">🇬🇧</span>
+        <span class="lang-code-text" id="langCode">EN</span>
+        <span class="lang-arrow">▾</span>
+      </button>
+      <div class="lang-menu" id="langMenu">
+        <button onclick="setLang('en')" class="active-lang">🇬🇧 English</button>
+        <button onclick="setLang('ru')">🇷🇺 Русский</button>
+        <button onclick="setLang('es')">🇪🇸 Español</button>
+        <button onclick="setLang('zh')">🇨🇳 中文</button>
+      </div>
+    </div>
+    <a href="#contact" class="nav-cta" data-i18n="nav-request-deck">Request Deck</a>
     <button class="nav-burger" id="burger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -1116,18 +1157,18 @@
 
 <!-- mobile drawer -->
 <div class="nav-drawer" id="drawer">
-  <a href="#hero" onclick="closeDrawer()">Home</a>
-  <a href="#about-anchor" onclick="closeDrawer()">About</a>
-  <a href="#products" onclick="closeDrawer()">Products</a>
-  <a href="#why" onclick="closeDrawer()">Investment Case</a>
-  <a href="#contact" onclick="closeDrawer()">Contact</a>
-  <a href="#contact" class="drawer-cta" onclick="closeDrawer()">Request Deck</a>
+  <a href="#hero" onclick="closeDrawer()" data-i18n="nav-home">Home</a>
+  <a href="#about-anchor" onclick="closeDrawer()" data-i18n="nav-about">About</a>
+  <a href="#products" onclick="closeDrawer()" data-i18n="nav-products">Products</a>
+  <a href="#why" onclick="closeDrawer()" data-i18n="nav-investment-case">Investment Case</a>
+  <a href="#contact" onclick="closeDrawer()" data-i18n="nav-contact">Contact</a>
+  <a href="#contact" class="drawer-cta" onclick="closeDrawer()" data-i18n="nav-request-deck">Request Deck</a>
 </div>
 
 <!-- ══ MIO BANNER ══ -->
 <div class="mio-banner">
   <span class="mio-line"></span>
-  Medical Investment Opportunity · 2026
+  <span data-i18n="mio-banner">Medical Investment Opportunity · 2026</span>
   <span class="mio-line"></span>
 </div>
 
@@ -1137,23 +1178,23 @@
 
     <!-- top-left: headline -->
     <div class="hero-text-card neon-box">
-      <h1 class="hero-title">
+      <h1 class="hero-title" data-i18n-html="hero-title">
         Future of<br>Men's Wellness
         <em>Own Your Part</em>
       </h1>
-      <p class="hero-starting">Investments Starting From <strong>$500</strong> With High ROI</p>
-      <p class="hero-sub">
+      <p class="hero-starting" data-i18n-html="hero-starting">Investments Starting From <strong>$500</strong> With High ROI</p>
+      <p class="hero-sub" data-i18n-html="hero-sub">
         A $26B global industry. <span style="color:#C8973A;font-weight:600;">Explosive demand.</span> Early-stage entry. Own a stake in the medical industry positioned for global expansion.
       </p>
-      <a href="#contact" class="btn-pill gold">Explore Opportunity</a>
+      <a href="#contact" class="btn-pill gold" data-i18n="hero-cta">Explore Opportunity</a>
     </div>
 
     <!-- right: doctor photo (spans both rows) -->
     <div id="about-anchor" class="hero-photo neon-box">
       <img src="brand_assets/Laboratory.jpg" alt="Medical Research">
       <div class="hero-photo-tags">
-        <span class="htag blue">Science-Backed Formula</span>
-        <span class="htag green">Natural Ingredients</span>
+        <span class="htag blue" data-i18n="hero-tag1">Science-Backed Formula</span>
+        <span class="htag green" data-i18n="hero-tag2">Natural Ingredients</span>
       </div>
     </div>
 
@@ -1163,10 +1204,10 @@
         <img src="brand_assets/bio'chem'.jpg" alt="Research Laboratory">
       </div>
       <div class="pic-text">
-        <span class="pt-label">About Libidiol</span>
-        <h3>Unleash Nature's Power for Passionate Living</h3>
-        <p>Premium natural formulas with science-driven development — building a portfolio that resonates globally and delivers results.</p>
-        <a href="#products">Discover Products →</a>
+        <span class="pt-label" data-i18n="hero-about-label">About Libidiol</span>
+        <h3 data-i18n="hero-about-title">Unleash Nature's Power for Passionate Living</h3>
+        <p data-i18n="hero-about-desc">Premium natural formulas with science-driven development — building a portfolio that resonates globally and delivers results.</p>
+        <a href="#products" data-i18n="hero-about-link">Discover Products →</a>
       </div>
     </div>
 
@@ -1178,19 +1219,19 @@
   <div class="stats-row reveal neon-box">
     <div class="stat-cell">
       <div class="stat-num"><span>$</span>26<span>B+</span></div>
-      <div class="stat-lbl">Global Market Size</div>
+      <div class="stat-lbl" data-i18n="stat-market">Global Market Size</div>
     </div>
     <div class="stat-cell">
       <div class="stat-num">8.4<span>%</span></div>
-      <div class="stat-lbl">Annual Growth Rate</div>
+      <div class="stat-lbl" data-i18n="stat-growth">Annual Growth Rate</div>
     </div>
     <div class="stat-cell">
       <div class="stat-num">14<span>%</span></div>
-      <div class="stat-lbl">Natural Supplements YoY</div>
+      <div class="stat-lbl" data-i18n="stat-supplements">Natural Supplements YoY</div>
     </div>
     <div class="stat-cell">
       <div class="stat-num">3<span>B+</span></div>
-      <div class="stat-lbl">Addressable Consumers</div>
+      <div class="stat-lbl" data-i18n="stat-consumers">Addressable Consumers</div>
     </div>
   </div>
 </div>
@@ -1218,12 +1259,12 @@
 <!-- ══ INVESTMENT PRODUCT BANNER ══ -->
 <div class="section-pad reveal">
   <div class="inv-banner neon-box">
-    <h2 class="inv-banner-title">Investment <span>Products</span></h2>
-    <p class="inv-banner-sub">
+    <h2 class="inv-banner-title" data-i18n-html="inv-title">Investment <span>Products</span></h2>
+    <p class="inv-banner-sub" data-i18n="inv-sub">
       Two premium men's health supplements — each targeting a distinct consumer
       segment, backed by natural formulas and proven market demand.
     </p>
-    <a href="#detail" class="btn-pill" style="flex-shrink:0;color:#1A2640;border-color:#8B9DB8;">View Details →</a>
+    <a href="#detail" class="btn-pill" style="flex-shrink:0;color:#1A2640;border-color:#8B9DB8;" data-i18n="inv-link">View Details →</a>
   </div>
 </div>
 
@@ -1235,20 +1276,20 @@
         <img src="brand_assets/VAROMAX PRODUCT PICTURE.png" alt="VAROMAX">
       </div>
       <div class="prod-info">
-        <span class="prod-tag">Clinical · Natural</span>
+        <span class="prod-tag" data-i18n="varomax-tag">Clinical · Natural</span>
         <h3 class="prod-name">VAROMAX</h3>
-        <p class="prod-sub">Natural Men's Enhancement Formula</p>
-        <p class="prod-desc">Precision-driven vitality formula in pharmaceutical-grade packaging — built on trust, transparency, and clinically-inspired ingredients.</p>
+        <p class="prod-sub" data-i18n="prod-sub-natural">Natural Men's Enhancement Formula</p>
+        <p class="prod-desc" data-i18n="varomax-desc">Precision-driven vitality formula in pharmaceutical-grade packaging — built on trust, transparency, and clinically-inspired ingredients.</p>
         <ul class="prod-feats">
-          <li>Natural enhancement formula</li>
-          <li>Clinically-inspired ingredients</li>
-          <li>Pharmaceutical-grade packaging</li>
+          <li data-i18n="varomax-feat1">Natural enhancement formula</li>
+          <li data-i18n="varomax-feat2">Clinically-inspired ingredients</li>
+          <li data-i18n="varomax-feat3">Pharmaceutical-grade packaging</li>
         </ul>
         <div class="prod-purpose">
-          <div class="prod-purpose-item"><span class="pp-label">Purpose</span><span class="pp-text">Stamina, endurance, and physical drive.</span></div>
-          <div class="prod-purpose-item"><span class="pp-label">Best for</span><span class="pp-text">Men needing lasting performance and physical support during activity.</span></div>
-          <div class="prod-purpose-item"><span class="pp-label">Duration</span><span class="pp-text">Effective for up to 36 hours.</span></div>
-          <div class="prod-purpose-item"><span class="pp-label">Safety</span><span class="pp-text">100% herbal — side effect free.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label" data-i18n="pp-purpose">Purpose</span><span class="pp-text" data-i18n="varomax-purpose-text">Stamina, endurance, and physical drive.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label" data-i18n="pp-bestfor">Best for</span><span class="pp-text" data-i18n="varomax-bestfor-text">Men needing lasting performance and physical support during activity.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label" data-i18n="pp-duration">Duration</span><span class="pp-text" data-i18n="varomax-duration-text">Effective for up to 36 hours.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label" data-i18n="pp-safety">Safety</span><span class="pp-text" data-i18n="herbal-safe">100% herbal — side effect free.</span></div>
         </div>
       </div>
     </div>
@@ -1257,20 +1298,20 @@
         <img src="brand_assets/LIBIRA PRODUCT PICTURE.png" alt="LIBIRA">
       </div>
       <div class="prod-info">
-        <span class="prod-tag">Fast Acting · 30 Min</span>
+        <span class="prod-tag" data-i18n="libira-tag">Fast Acting · 30 Min</span>
         <h3 class="prod-name">LIBIRA</h3>
-        <p class="prod-sub">Natural Men's Enhancement Formula</p>
-        <p class="prod-desc">Our flagship fast-acting supplement — bold, effective, iconic. Trusted for its dramatic results and premium metallic blue packaging.</p>
+        <p class="prod-sub" data-i18n="prod-sub-natural">Natural Men's Enhancement Formula</p>
+        <p class="prod-desc" data-i18n="libira-desc">Our flagship fast-acting supplement — bold, effective, iconic. Trusted for its dramatic results and premium metallic blue packaging.</p>
         <ul class="prod-feats">
-          <li>Works in as little as 30 minutes</li>
-          <li>Natural active ingredients</li>
-          <li>Premium metallic blue packaging</li>
+          <li data-i18n="libira-feat1">Works in as little as 30 minutes</li>
+          <li data-i18n="libira-feat2">Natural active ingredients</li>
+          <li data-i18n="libira-feat3">Premium metallic blue packaging</li>
         </ul>
         <div class="prod-purpose">
-          <div class="prod-purpose-item"><span class="pp-label">Purpose</span><span class="pp-text">Confidence, desire, and intimate energy.</span></div>
-          <div class="prod-purpose-item"><span class="pp-label">Best for</span><span class="pp-text">Men looking to enhance mood, blood flow, and intimacy experience.</span></div>
-          <div class="prod-purpose-item"><span class="pp-label">Duration</span><span class="pp-text">Effective for up to 36 hours.</span></div>
-          <div class="prod-purpose-item"><span class="pp-label">Safety</span><span class="pp-text">100% herbal — side effect free.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label" data-i18n="pp-purpose">Purpose</span><span class="pp-text" data-i18n="libira-purpose-text">Confidence, desire, and intimate energy.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label" data-i18n="pp-bestfor">Best for</span><span class="pp-text" data-i18n="libira-bestfor-text">Men looking to enhance mood, blood flow, and intimacy experience.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label" data-i18n="pp-duration">Duration</span><span class="pp-text" data-i18n="libira-duration-text">Effective for up to 36 hours.</span></div>
+          <div class="prod-purpose-item"><span class="pp-label" data-i18n="pp-safety">Safety</span><span class="pp-text" data-i18n="herbal-safe">100% herbal — side effect free.</span></div>
         </div>
       </div>
     </div>
@@ -1281,13 +1322,13 @@
 <div class="section-pad">
   <div class="owyneed-card reveal">
     <div class="owyneed-text">
-      <h3 class="owyneed-title">Only When You Need It</h3>
-      <p class="owyneed-intro">Unlike daily vitamins or long-term hormone therapies, Libira and Varomax are event-based — taken only when needed. This makes them:</p>
+      <h3 class="owyneed-title" data-i18n="owyneed-title">Only When You Need It</h3>
+      <p class="owyneed-intro" data-i18n="owyneed-intro">Unlike daily vitamins or long-term hormone therapies, Libira and Varomax are event-based — taken only when needed. This makes them:</p>
       <ul class="owyneed-list">
-        <li><strong>Flexible</strong> – men can choose when they want the boost, whether it's a special evening, weekend trip, or after lots of drinks and pub visits to get that boost.</li>
-        <li><strong>Practical</strong> – no need to commit to daily supplementation or worry about skipping doses.</li>
-        <li><strong>High repeat demand</strong> – consumable format creates reliable reorder cycles and long-term customer value.</li>
-        <li><strong>Large addressable market</strong> – hundreds of millions of men globally experience sexual health concerns, supporting strong long-term growth potential.</li>
+        <li data-i18n-html="owyneed-li1"><strong>Flexible</strong> – men can choose when they want the boost, whether it's a special evening, weekend trip, or after lots of drinks and pub visits to get that boost.</li>
+        <li data-i18n-html="owyneed-li2"><strong>Practical</strong> – no need to commit to daily supplementation or worry about skipping doses.</li>
+        <li data-i18n-html="owyneed-li3"><strong>High repeat demand</strong> – consumable format creates reliable reorder cycles and long-term customer value.</li>
+        <li data-i18n-html="owyneed-li4"><strong>Large addressable market</strong> – hundreds of millions of men globally experience sexual health concerns, supporting strong long-term growth potential.</li>
       </ul>
     </div>
     <div class="owyneed-img">
@@ -1304,7 +1345,7 @@
         <img src="brand_assets/VAROMAX PRODUCT PICTURE.png" alt="VAROMAX">
         <div>
           <p class="dc-label">Varomax</p>
-          <h3>The Clinical Choice</h3>
+          <h3 data-i18n="varomax-detail-tagline">The Clinical Choice</h3>
         </div>
       </div>
       <div class="dc-divider"></div>
@@ -1312,22 +1353,22 @@
         <div class="dc-point">
           <span class="dc-num">01</span>
           <div class="dc-body">
-            <strong>Natural Enhancement Formula</strong>
-            <p>Precision-blended ingredients targeting men's vitality through natural, scientifically-selected compounds.</p>
+            <strong data-i18n="varomax-d1-title">Natural Enhancement Formula</strong>
+            <p data-i18n="varomax-d1-desc">Precision-blended ingredients targeting men's vitality through natural, scientifically-selected compounds.</p>
           </div>
         </div>
         <div class="dc-point">
           <span class="dc-num">02</span>
           <div class="dc-body">
-            <strong>Pharmaceutical-Grade Trust</strong>
-            <p>Clean white packaging signals clinical credibility — building consumer confidence and repeat purchases.</p>
+            <strong data-i18n="varomax-d2-title">Pharmaceutical-Grade Trust</strong>
+            <p data-i18n="varomax-d2-desc">Clean white packaging signals clinical credibility — building consumer confidence and repeat purchases.</p>
           </div>
         </div>
         <div class="dc-point">
           <span class="dc-num">03</span>
           <div class="dc-body">
-            <strong>Premium Market Positioning</strong>
-            <p>Positioned in the growing natural health category with strong margins and scalable production economics.</p>
+            <strong data-i18n="varomax-d3-title">Premium Market Positioning</strong>
+            <p data-i18n="varomax-d3-desc">Positioned in the growing natural health category with strong margins and scalable production economics.</p>
           </div>
         </div>
       </div>
@@ -1337,7 +1378,7 @@
         <img src="brand_assets/LIBIRA PRODUCT PICTURE.png" alt="LIBIRA">
         <div>
           <p class="dc-label">Libira</p>
-          <h3>The Bold Performer</h3>
+          <h3 data-i18n="libira-detail-tagline">The Bold Performer</h3>
         </div>
       </div>
       <div class="dc-divider"></div>
@@ -1345,22 +1386,22 @@
         <div class="dc-point">
           <span class="dc-num">01</span>
           <div class="dc-body">
-            <strong>Fast Acting — 30 Minutes</strong>
-            <p>Rapid-onset formula designed for men who demand results. Effective within 30 minutes of consumption.</p>
+            <strong data-i18n="libira-d1-title">Fast Acting — 30 Minutes</strong>
+            <p data-i18n="libira-d1-desc">Rapid-onset formula designed for men who demand results. Effective within 30 minutes of consumption.</p>
           </div>
         </div>
         <div class="dc-point">
           <span class="dc-num">02</span>
           <div class="dc-body">
-            <strong>Bold Brand Recognition</strong>
-            <p>Iconic metallic blue packaging creates instant shelf standout and strong consumer recall across all markets.</p>
+            <strong data-i18n="libira-d2-title">Bold Brand Recognition</strong>
+            <p data-i18n="libira-d2-desc">Iconic metallic blue packaging creates instant shelf standout and strong consumer recall across all markets.</p>
           </div>
         </div>
         <div class="dc-point">
           <span class="dc-num">03</span>
           <div class="dc-body">
-            <strong>Flagship Revenue Driver</strong>
-            <p>As our hero product, LIBIRA leads customer acquisition and drives the highest volume in our portfolio.</p>
+            <strong data-i18n="libira-d3-title">Flagship Revenue Driver</strong>
+            <p data-i18n="libira-d3-desc">As our hero product, LIBIRA leads customer acquisition and drives the highest volume in our portfolio.</p>
           </div>
         </div>
       </div>
@@ -1371,31 +1412,31 @@
 <!-- ══ WHY THIS MARKET ══ -->
 <div class="section-pad">
   <div class="why-header reveal" style="margin-bottom:var(--gap);">
-    <span class="eyebrow" style="font-size:16px;color:#000;">The Business Case</span>
-    <h2 class="big-title" style="color:#1A2640;">Why <em style="color:#C8973A;">This Market Works</em></h2>
+    <span class="eyebrow" style="font-size:16px;color:#000;" data-i18n="wm-eyebrow">The Business Case</span>
+    <h2 class="big-title" style="color:#1A2640;" data-i18n-html="wm-title">Why <em style="color:#C8973A;">This Market Works</em></h2>
   </div>
   <div class="why-market-grid">
     <div class="wm-card reveal">
       <div class="wm-stat">5×</div>
-      <div class="wm-title">High Margin Product</div>
-      <p class="wm-desc">Men's wellness supplements command exceptional margins — up to 5× cost of goods. Low manufacturing complexity combined with premium positioning means strong profitability at every unit sold.</p>
+      <div class="wm-title" data-i18n="wm-1-title">High Margin Product</div>
+      <p class="wm-desc" data-i18n="wm-1-desc">Men's wellness supplements command exceptional margins — up to 5× cost of goods. Low manufacturing complexity combined with premium positioning means strong profitability at every unit sold.</p>
     </div>
     <div class="wm-card reveal d1">
       <div class="wm-stat">Monthly</div>
-      <div class="wm-title">High Repeat Purchase Rate</div>
-      <p class="wm-desc">Customers reorder at least once a month. Unlike one-time purchases, supplements build recurring revenue streams — creating predictable cash flow and strong customer lifetime value.</p>
+      <div class="wm-title" data-i18n="wm-2-title">High Repeat Purchase Rate</div>
+      <p class="wm-desc" data-i18n="wm-2-desc">Customers reorder at least once a month. Unlike one-time purchases, supplements build recurring revenue streams — creating predictable cash flow and strong customer lifetime value.</p>
     </div>
     <div class="wm-card reveal d2">
       <div class="wm-stat">800M+</div>
-      <div class="wm-title">Men with ED & Premature Ejaculation</div>
-      <p class="wm-desc">The scale of need is enormous. Erectile dysfunction (ED) affects approximately <strong>322 million men worldwide</strong>. Premature ejaculation (PE) affects <strong>120–150 million men</strong> using a strict clinical definition — rising to 610–920 million on a broader self-reported basis. Combined, these conditions represent one of the largest underserved health markets in the world.</p>
-      <p class="wm-desc" style="margin-top:10px;">This high-need demographic actively seeks effective, discreet, and natural solutions — exactly what Libidiol delivers.</p>
+      <div class="wm-title" data-i18n="wm-3-title">Men with ED & Premature Ejaculation</div>
+      <p class="wm-desc" data-i18n-html="wm-3-desc">The scale of need is enormous. Erectile dysfunction (ED) affects approximately <strong>322 million men worldwide</strong>. Premature ejaculation (PE) affects <strong>120–150 million men</strong> using a strict clinical definition — rising to 610–920 million on a broader self-reported basis. Combined, these conditions represent one of the largest underserved health markets in the world.</p>
+      <p class="wm-desc" style="margin-top:10px;" data-i18n="wm-3-desc2">This high-need demographic actively seeks effective, discreet, and natural solutions — exactly what Libidiol delivers.</p>
     </div>
     <div class="wm-card reveal d3">
       <div class="wm-stat">20–40%</div>
-      <div class="wm-title">Recreational Enhancement Demand</div>
-      <p class="wm-desc">20–40% of enhancement product users have no medical condition — they purchase purely to elevate performance, confidence, and intimacy experience. This growing recreational segment broadens the addressable market significantly beyond clinical need.</p>
-      <p class="wm-desc" style="margin-top:12px;">Libidiol's herbal formula is side-effect free and long-lasting, making it the perfect fit for this audience. Alongside recreational users, we also capture men who have experienced unwanted side effects from pharmaceutical alternatives and are actively seeking a cleaner, more natural solution that actually works.</p>
+      <div class="wm-title" data-i18n="wm-4-title">Recreational Enhancement Demand</div>
+      <p class="wm-desc" data-i18n="wm-4-desc">20–40% of enhancement product users have no medical condition — they purchase purely to elevate performance, confidence, and intimacy experience. This growing recreational segment broadens the addressable market significantly beyond clinical need.</p>
+      <p class="wm-desc" style="margin-top:12px;" data-i18n="wm-4-desc2">Libidiol's herbal formula is side-effect free and long-lasting, making it the perfect fit for this audience. Alongside recreational users, we also capture men who have experienced unwanted side effects from pharmaceutical alternatives and are actively seeking a cleaner, more natural solution that actually works.</p>
     </div>
   </div>
 </div>
@@ -1403,43 +1444,43 @@
 <!-- ══ THAILAND HISTORY ══ -->
 <div class="section-pad thailand-section">
   <div class="thailand-intro reveal">
-    <span class="eyebrow">Our Story</span>
-    <h2 class="big-title">Born in <em>Thailand</em></h2>
-    <p>From a single market with a big idea — to pharmacies, global shipments, and now entering the EU and USA. This is how Libidiol was built.</p>
+    <span class="eyebrow" data-i18n="thailand-eyebrow">Our Story</span>
+    <h2 class="big-title" data-i18n-html="thailand-title">Born in <em>Thailand</em></h2>
+    <p data-i18n="thailand-intro">From a single market with a big idea — to pharmacies, global shipments, and now entering the EU and USA. This is how Libidiol was built.</p>
   </div>
   <div class="thailand-grid">
     <div class="thailand-story reveal">
-      <p>Three years ago, Libidiol was founded in Thailand with a simple conviction: men's vitality deserved a premium, natural, and clinically-informed solution. Starting from scratch in one of Southeast Asia's most dynamic wellness markets, we built our formulas, our brand, and our distribution network from the ground up.</p>
-      <p>Last year marked a turning point. Growth accelerated exponentially — our products are now stocked across pharmacies in Bangkok and Pattaya, two of Thailand's most commercially active cities, giving us consistent brick-and-mortar presence and brand visibility in high-footfall locations.</p>
-      <p>A significant and unexpected growth driver has been the expat and tourist community. Western men living in Thailand and visitors from Europe and the USA discovered our products, experienced real results, and kept ordering — even after returning home. Shipments are now dispatched directly from Thailand to customers across the globe, validating international product-market fit before we even formally enter those markets.</p>
+      <p data-i18n="thailand-p1">Three years ago, Libidiol was founded in Thailand with a simple conviction: men's vitality deserved a premium, natural, and clinically-informed solution. Starting from scratch in one of Southeast Asia's most dynamic wellness markets, we built our formulas, our brand, and our distribution network from the ground up.</p>
+      <p data-i18n="thailand-p2">Last year marked a turning point. Growth accelerated exponentially — our products are now stocked across pharmacies in Bangkok and Pattaya, two of Thailand's most commercially active cities, giving us consistent brick-and-mortar presence and brand visibility in high-footfall locations.</p>
+      <p data-i18n="thailand-p3">A significant and unexpected growth driver has been the expat and tourist community. Western men living in Thailand and visitors from Europe and the USA discovered our products, experienced real results, and kept ordering — even after returning home. Shipments are now dispatched directly from Thailand to customers across the globe, validating international product-market fit before we even formally enter those markets.</p>
     </div>
     <div class="thailand-timeline">
       <div class="tl-item reveal d1">
         <div class="tl-year">Y1</div>
         <div class="tl-body">
-          <strong>Brand &amp; Formula Launch</strong>
-          <p>Founded in Thailand. LIBIRA and VAROMAX formulas developed, tested, and brought to market. Initial retail and online sales established.</p>
+          <strong data-i18n="tl-y1-title">Brand &amp; Formula Launch</strong>
+          <p data-i18n="tl-y1-desc">Founded in Thailand. LIBIRA and VAROMAX formulas developed, tested, and brought to market. Initial retail and online sales established.</p>
         </div>
       </div>
       <div class="tl-item reveal d2">
         <div class="tl-year">Y2</div>
         <div class="tl-body">
-          <strong>Pharmacy Network Expansion</strong>
-          <p>Products enter pharmacy chains across Pattaya and Bangkok. Growing word-of-mouth among expat communities and inbound tourists drives organic demand.</p>
+          <strong data-i18n="tl-y2-title">Pharmacy Network Expansion</strong>
+          <p data-i18n="tl-y2-desc">Products enter pharmacy chains across Pattaya and Bangkok. Growing word-of-mouth among expat communities and inbound tourists drives organic demand.</p>
         </div>
       </div>
       <div class="tl-item reveal d3">
         <div class="tl-year">Y3</div>
         <div class="tl-body">
-          <strong>Exponential Growth &amp; Global Orders</strong>
-          <p>Sales surged year-on-year. Western expats and tourists returning home began ordering online, triggering direct international shipments from Thailand — an early proof of global demand.</p>
+          <strong data-i18n="tl-y3-title">Exponential Growth &amp; Global Orders</strong>
+          <p data-i18n="tl-y3-desc">Sales surged year-on-year. Western expats and tourists returning home began ordering online, triggering direct international shipments from Thailand — an early proof of global demand.</p>
         </div>
       </div>
       <div class="tl-item reveal d4">
         <div class="tl-year">Next</div>
         <div class="tl-body">
-          <strong>EU &amp; USA Market Entry</strong>
-          <p>With a proven product, growing customer base, and validated international demand, Libidiol is now ready to formally enter the European Union and United States markets.</p>
+          <strong data-i18n="tl-next-title">EU &amp; USA Market Entry</strong>
+          <p data-i18n="tl-next-desc">With a proven product, growing customer base, and validated international demand, Libidiol is now ready to formally enter the European Union and United States markets.</p>
         </div>
       </div>
     </div>
@@ -1449,54 +1490,54 @@
 <!-- ══ WHY INVEST ══ -->
 <div id="why" class="section-pad">
   <div class="why-header reveal">
-    <span class="eyebrow">Investment Case</span>
-    <h2 class="big-title">Why <em>Invest in Libidiol</em></h2>
+    <span class="eyebrow" data-i18n="why-eyebrow">Investment Case</span>
+    <h2 class="big-title" data-i18n-html="why-title">Why <em>Invest in Libidiol</em></h2>
   </div>
   <div class="pillars-grid">
-    <div class="pillar reveal neon-box"><div class="pil-num">01</div><h3 class="pil-title">Differentiated Portfolio</h3><p class="pil-text">Two distinct products serve different consumer segments and price points, reducing risk while maximising addressable market reach.</p></div>
-    <div class="pillar reveal d1 neon-box"><div class="pil-num">02</div><h3 class="pil-title">Natural Formula Positioning</h3><p class="pil-text">Consumer demand for natural health solutions is accelerating globally. Our formulas are aligned with this structural shift.</p></div>
-    <div class="pillar reveal d2 neon-box"><div class="pil-num">03</div><h3 class="pil-title">Scalable Distribution</h3><p class="pil-text">Our go-to-market strategy spans e-commerce, pharmacy channels, adult wellness channels, and international distribution partnerships.</p></div>
-    <div class="pillar reveal d3 neon-box"><div class="pil-num">04</div><h3 class="pil-title">Premium Brand Identity</h3><p class="pil-text">Strong visual identity drives shelf standout and repeat purchase intent across all target markets.</p></div>
-    <div class="pillar reveal d4 neon-box"><div class="pil-num">05</div><h3 class="pil-title">High-Margin Economics</h3><p class="pil-text">Dietary supplements enjoy some of the best unit economics in consumer goods — lean manufacturing and high gross margins.</p></div>
-    <div class="pillar reveal d5 neon-box"><div class="pil-num">06</div><h3 class="pil-title">Early Mover Advantage</h3><p class="pil-text">Having established a strong foundation in Thailand, we are now expanding into the European Union and the United States — targeting two of the world's largest and most lucrative supplement markets.</p></div>
+    <div class="pillar reveal neon-box"><div class="pil-num">01</div><h3 class="pil-title" data-i18n="pillar-1-title">Differentiated Portfolio</h3><p class="pil-text" data-i18n="pillar-1-text">Two distinct products serve different consumer segments and price points, reducing risk while maximising addressable market reach.</p></div>
+    <div class="pillar reveal d1 neon-box"><div class="pil-num">02</div><h3 class="pil-title" data-i18n="pillar-2-title">Natural Formula Positioning</h3><p class="pil-text" data-i18n="pillar-2-text">Consumer demand for natural health solutions is accelerating globally. Our formulas are aligned with this structural shift.</p></div>
+    <div class="pillar reveal d2 neon-box"><div class="pil-num">03</div><h3 class="pil-title" data-i18n="pillar-3-title">Scalable Distribution</h3><p class="pil-text" data-i18n="pillar-3-text">Our go-to-market strategy spans e-commerce, pharmacy channels, adult wellness channels, and international distribution partnerships.</p></div>
+    <div class="pillar reveal d3 neon-box"><div class="pil-num">04</div><h3 class="pil-title" data-i18n="pillar-4-title">Premium Brand Identity</h3><p class="pil-text" data-i18n="pillar-4-text">Strong visual identity drives shelf standout and repeat purchase intent across all target markets.</p></div>
+    <div class="pillar reveal d4 neon-box"><div class="pil-num">05</div><h3 class="pil-title" data-i18n="pillar-5-title">High-Margin Economics</h3><p class="pil-text" data-i18n="pillar-5-text">Dietary supplements enjoy some of the best unit economics in consumer goods — lean manufacturing and high gross margins.</p></div>
+    <div class="pillar reveal d5 neon-box"><div class="pil-num">06</div><h3 class="pil-title" data-i18n="pillar-6-title">Early Mover Advantage</h3><p class="pil-text" data-i18n="pillar-6-text">Having established a strong foundation in Thailand, we are now expanding into the European Union and the United States — targeting two of the world's largest and most lucrative supplement markets.</p></div>
   </div>
 </div>
 
 <!-- ══ MARKET GROWTH ══ -->
 <div class="section-pad market-section">
   <div class="market-header reveal">
-    <span class="eyebrow">Market Opportunity</span>
-    <h2 class="big-title">Men's Vitality — <em>Explosive Growth</em></h2>
-    <p style="max-width:640px;margin:16px auto 0;font-size:16px;color:var(--text-mid);line-height:1.8;">The men's sexual wellness and vitality supplement category is one of the fastest-growing segments in consumer health. EU and US markets are recording double-digit year-over-year expansion, driven by rising consumer awareness, destigmatisation of men's health, and growing demand for natural alternatives.</p>
+    <span class="eyebrow" data-i18n="market-eyebrow">Market Opportunity</span>
+    <h2 class="big-title" data-i18n-html="market-title">Men's Vitality — <em>Explosive Growth</em></h2>
+    <p style="max-width:640px;margin:16px auto 0;font-size:16px;color:var(--text-mid);line-height:1.8;" data-i18n="market-intro">The men's sexual wellness and vitality supplement category is one of the fastest-growing segments in consumer health. EU and US markets are recording double-digit year-over-year expansion, driven by rising consumer awareness, destigmatisation of men's health, and growing demand for natural alternatives.</p>
   </div>
 
   <div class="market-grid">
     <div class="market-card reveal">
       <span class="market-flag">🇪🇺</span>
-      <div class="market-region">European Union</div>
+      <div class="market-region" data-i18n="market-eu-region">European Union</div>
       <div class="market-yoy"><span>+</span>18<span>% YoY</span></div>
-      <p class="market-desc">The EU men's health supplement market is growing at ~18% annually, fuelled by an ageing male population, rising disposable income, and expanding e-commerce penetration across Germany, France, the Netherlands, and Scandinavia. Regulatory acceptance of natural botanical formulas provides a clear path to shelf and digital distribution.</p>
+      <p class="market-desc" data-i18n="market-eu-desc">The EU men's health supplement market is growing at ~18% annually, fuelled by an ageing male population, rising disposable income, and expanding e-commerce penetration across Germany, France, the Netherlands, and Scandinavia. Regulatory acceptance of natural botanical formulas provides a clear path to shelf and digital distribution.</p>
     </div>
     <div class="market-card reveal d1">
       <span class="market-flag">🇺🇸</span>
-      <div class="market-region">United States</div>
+      <div class="market-region" data-i18n="market-us-region">United States</div>
       <div class="market-yoy"><span>+</span>22<span>% YoY</span></div>
-      <p class="market-desc">The US men's vitality segment is the world's largest and most dynamic, growing at ~22% per year. Direct-to-consumer channels, subscription models, and influencer-led marketing are accelerating adoption. Consumers increasingly seek clinically-informed, natural formulas — a space where Libidiol is precisely positioned.</p>
+      <p class="market-desc" data-i18n="market-us-desc">The US men's vitality segment is the world's largest and most dynamic, growing at ~22% per year. Direct-to-consumer channels, subscription models, and influencer-led marketing are accelerating adoption. Consumers increasingly seek clinically-informed, natural formulas — a space where Libidiol is precisely positioned.</p>
     </div>
   </div>
 
   <div class="market-stats-row">
     <div class="market-stat reveal">
       <div class="market-stat-val">$4.8B</div>
-      <div class="market-stat-label">Global men's vitality supplement market size (2025)</div>
+      <div class="market-stat-label" data-i18n="market-stat1-label">Global men's vitality supplement market size (2025)</div>
     </div>
     <div class="market-stat reveal d1">
       <div class="market-stat-val">+19%</div>
-      <div class="market-stat-label">Combined EU &amp; USA average YoY growth rate</div>
+      <div class="market-stat-label" data-i18n="market-stat2-label">Combined EU &amp; USA average YoY growth rate</div>
     </div>
     <div class="market-stat reveal d2">
       <div class="market-stat-val">$9.2B</div>
-      <div class="market-stat-label">Projected market value by 2030</div>
+      <div class="market-stat-label" data-i18n="market-stat3-label">Projected market value by 2030</div>
     </div>
   </div>
 </div>
@@ -1505,15 +1546,15 @@
 <div id="contact" class="section-pad">
   <div class="contact-card reveal neon-box">
     <div class="contact-l">
-      <span class="eyebrow">Get In Touch</span>
-      <h2 style="margin-top:14px;">Request the<br><em>Investment Deck</em></h2>
-      <p style="margin-top:16px;">Complete the form and our team will send you the full investor prospectus, financial projections, and product dossier.</p>
+      <span class="eyebrow" data-i18n="contact-eyebrow">Get In Touch</span>
+      <h2 style="margin-top:14px;" data-i18n-html="contact-title">Request the<br><em>Investment Deck</em></h2>
+      <p style="margin-top:16px;" data-i18n="contact-desc">Complete the form and our team will send you the full investor prospectus, financial projections, and product dossier.</p>
       <div class="ci-stack">
-        <div class="ci-item"><div class="ci-lbl">Brand</div><div class="ci-val">Libidiol — Unleash Nature's Power for Passionate Living</div></div>
-        <div class="ci-item"><div class="ci-lbl">Products</div><div class="ci-val">LIBIRA · VAROMAX</div></div>
-        <div class="ci-item"><div class="ci-lbl">Investment Type</div><div class="ci-val">Equity · Partnership · Distribution</div></div>
-        <div class="ci-item"><div class="ci-lbl">Enquiries</div><div class="ci-val">office@libidiol.com</div></div>
-        <div class="ci-item"><div class="ci-lbl">Website</div><div class="ci-val"><a href="https://www.libidiol.eu" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Visit our website</a></div></div>
+        <div class="ci-item"><div class="ci-lbl" data-i18n="ci-brand-lbl">Brand</div><div class="ci-val">Libidiol — Unleash Nature's Power for Passionate Living</div></div>
+        <div class="ci-item"><div class="ci-lbl" data-i18n="ci-products-lbl">Products</div><div class="ci-val">LIBIRA · VAROMAX</div></div>
+        <div class="ci-item"><div class="ci-lbl" data-i18n="ci-invtype-lbl">Investment Type</div><div class="ci-val" data-i18n="ci-invtype-val">Equity · Partnership · Distribution</div></div>
+        <div class="ci-item"><div class="ci-lbl" data-i18n="ci-enquiries-lbl">Enquiries</div><div class="ci-val">office@libidiol.com</div></div>
+        <div class="ci-item"><div class="ci-lbl" data-i18n="ci-website-lbl">Website</div><div class="ci-val"><a href="https://www.libidiol.eu" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;" data-i18n="ci-website-link">Visit our website</a></div></div>
       </div>
     </div>
     <div class="contact-r">
@@ -1521,21 +1562,21 @@
         <input type="hidden" name="_replyto" value="">
         <input type="hidden" name="_subject" value="New Investment Enquiry — Libidiol">
         <div class="crow">
-          <input type="text" name="first_name" placeholder="First Name" required>
-          <input type="text" name="last_name" placeholder="Last Name" required>
+          <input type="text" name="first_name" data-i18n-placeholder="form-firstname" placeholder="First Name" required>
+          <input type="text" name="last_name" data-i18n-placeholder="form-lastname" placeholder="Last Name" required>
         </div>
-        <input type="email" name="email" placeholder="Email Address" required>
-        <input type="text" name="company" placeholder="Company / Fund Name">
+        <input type="email" name="email" data-i18n-placeholder="form-email" placeholder="Email Address" required>
+        <input type="text" name="company" data-i18n-placeholder="form-company" placeholder="Company / Fund Name">
         <select name="investment_range">
-          <option value="" disabled selected>Investment Range</option>
+          <option value="" disabled selected data-i18n="form-range">Investment Range</option>
           <option>Under $50,000</option>
           <option>$50,000 – $250,000</option>
           <option>$250,000 – $1M</option>
           <option>$1M – $5M</option>
           <option>$5M+</option>
         </select>
-        <textarea name="message" placeholder="Tell us about your interest in Libidiol..."></textarea>
-        <button type="submit" class="csub">Send Request →</button>
+        <textarea name="message" data-i18n-placeholder="form-message" placeholder="Tell us about your interest in Libidiol..."></textarea>
+        <button type="submit" class="csub" data-i18n="form-submit">Send Request →</button>
       </form>
     </div>
   </div>
@@ -1547,27 +1588,27 @@
     <div class="ft-top">
       <div class="ft-brand">
         <span class="ft-logo-text">LIBIDIOL</span>
-        <p>Pioneering premium men's health supplements. Natural formulas, clinically inspired, globally distributed.</p>
+        <p data-i18n="ft-tagline">Pioneering premium men's health supplements. Natural formulas, clinically inspired, globally distributed.</p>
       </div>
       <div>
-        <p class="ft-col-title">Navigation</p>
+        <p class="ft-col-title" data-i18n="ft-nav-title">Navigation</p>
         <ul class="ft-nav">
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#about-anchor">About</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#statistics">Market Stats</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#hero" data-i18n="nav-home">Home</a></li>
+          <li><a href="#about-anchor" data-i18n="nav-about">About</a></li>
+          <li><a href="#products" data-i18n="nav-products">Products</a></li>
+          <li><a href="#statistics" data-i18n="ft-nav-stats">Market Stats</a></li>
+          <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
         </ul>
       </div>
       <div>
-        <p class="ft-col-title">Contact</p>
-        <div class="ft-ci"><div class="ft-ci-lbl">Products</div><div class="ft-ci-val">LIBIRA · VAROMAX</div></div>
-        <div class="ft-ci"><div class="ft-ci-lbl">Category</div><div class="ft-ci-val">Men's Health Supplements</div></div>
-        <div class="ft-ci"><div class="ft-ci-lbl">Enquiries</div><div class="ft-ci-val">office@libidiol.com</div></div>
+        <p class="ft-col-title" data-i18n="nav-contact">Contact</p>
+        <div class="ft-ci"><div class="ft-ci-lbl" data-i18n="ci-products-lbl">Products</div><div class="ft-ci-val">LIBIRA · VAROMAX</div></div>
+        <div class="ft-ci"><div class="ft-ci-lbl" data-i18n="ft-category-lbl">Category</div><div class="ft-ci-val" data-i18n="ft-category-val">Men's Health Supplements</div></div>
+        <div class="ft-ci"><div class="ft-ci-lbl" data-i18n="ci-enquiries-lbl">Enquiries</div><div class="ft-ci-val">office@libidiol.com</div></div>
       </div>
     </div>
     <div class="ft-bottom">
-      <p>© 2026 Libidiol. All rights reserved. For investor enquiries only.</p>
+      <p data-i18n="ft-copyright">© 2026 Libidiol. All rights reserved. For investor enquiries only.</p>
       <div class="ft-social">
         <a href="https://www.facebook.com/libidiol.thailand/" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
         <a href="https://www.linkedin.com/company/varomax/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
@@ -1666,6 +1707,307 @@
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     })
   );
+
+  // ─── LANGUAGE SWITCHER ───
+  const translations = {
+    en: {
+      'nav-home':'Home','nav-about':'About','nav-products':'Products','nav-investment':'Investment','nav-investment-case':'Investment Case','nav-contact':'Contact','nav-request-deck':'Request Deck',
+      'mio-banner':'Medical Investment Opportunity · 2026',
+      'hero-title':'Future of<br>Men\'s Wellness<em>Own Your Part</em>',
+      'hero-starting':'Investments Starting From <strong>$500</strong> With High ROI',
+      'hero-sub':'A $26B global industry. <span style="color:#C8973A;font-weight:600;">Explosive demand.</span> Early-stage entry. Own a stake in the medical industry positioned for global expansion.',
+      'hero-cta':'Explore Opportunity','hero-tag1':'Science-Backed Formula','hero-tag2':'Natural Ingredients',
+      'hero-about-label':'About Libidiol','hero-about-title':"Unleash Nature's Power for Passionate Living",
+      'hero-about-desc':'Premium natural formulas with science-driven development — building a portfolio that resonates globally and delivers results.','hero-about-link':'Discover Products →',
+      'stat-market':'Global Market Size','stat-growth':'Annual Growth Rate','stat-supplements':'Natural Supplements YoY','stat-consumers':'Addressable Consumers',
+      'inv-title':'Investment <span>Products</span>','inv-sub':'Two premium men\'s health supplements — each targeting a distinct consumer segment, backed by natural formulas and proven market demand.','inv-link':'View Details →',
+      'varomax-tag':'Clinical · Natural','prod-sub-natural':"Natural Men's Enhancement Formula",
+      'varomax-desc':'Precision-driven vitality formula in pharmaceutical-grade packaging — built on trust, transparency, and clinically-inspired ingredients.',
+      'varomax-feat1':'Natural enhancement formula','varomax-feat2':'Clinically-inspired ingredients','varomax-feat3':'Pharmaceutical-grade packaging',
+      'pp-purpose':'Purpose','pp-bestfor':'Best for','pp-duration':'Duration','pp-safety':'Safety',
+      'varomax-purpose-text':'Stamina, endurance, and physical drive.','varomax-bestfor-text':'Men needing lasting performance and physical support during activity.',
+      'varomax-duration-text':'Effective for up to 36 hours.','herbal-safe':'100% herbal — side effect free.',
+      'libira-tag':'Fast Acting · 30 Min','libira-desc':'Our flagship fast-acting supplement — bold, effective, iconic. Trusted for its dramatic results and premium metallic blue packaging.',
+      'libira-feat1':'Works in as little as 30 minutes','libira-feat2':'Natural active ingredients','libira-feat3':'Premium metallic blue packaging',
+      'libira-purpose-text':'Confidence, desire, and intimate energy.','libira-bestfor-text':'Men looking to enhance mood, blood flow, and intimacy experience.','libira-duration-text':'Effective for up to 36 hours.',
+      'owyneed-title':'Only When You Need It','owyneed-intro':'Unlike daily vitamins or long-term hormone therapies, Libira and Varomax are event-based — taken only when needed. This makes them:',
+      'owyneed-li1':'<strong>Flexible</strong> – men can choose when they want the boost, whether it\'s a special evening, weekend trip, or after lots of drinks and pub visits to get that boost.',
+      'owyneed-li2':'<strong>Practical</strong> – no need to commit to daily supplementation or worry about skipping doses.',
+      'owyneed-li3':'<strong>High repeat demand</strong> – consumable format creates reliable reorder cycles and long-term customer value.',
+      'owyneed-li4':'<strong>Large addressable market</strong> – hundreds of millions of men globally experience sexual health concerns, supporting strong long-term growth potential.',
+      'varomax-detail-tagline':'The Clinical Choice','varomax-d1-title':'Natural Enhancement Formula','varomax-d1-desc':"Precision-blended ingredients targeting men's vitality through natural, scientifically-selected compounds.",
+      'varomax-d2-title':'Pharmaceutical-Grade Trust','varomax-d2-desc':'Clean white packaging signals clinical credibility — building consumer confidence and repeat purchases.',
+      'varomax-d3-title':'Premium Market Positioning','varomax-d3-desc':'Positioned in the growing natural health category with strong margins and scalable production economics.',
+      'libira-detail-tagline':'The Bold Performer','libira-d1-title':'Fast Acting — 30 Minutes','libira-d1-desc':'Rapid-onset formula designed for men who demand results. Effective within 30 minutes of consumption.',
+      'libira-d2-title':'Bold Brand Recognition','libira-d2-desc':'Iconic metallic blue packaging creates instant shelf standout and strong consumer recall across all markets.',
+      'libira-d3-title':'Flagship Revenue Driver','libira-d3-desc':'As our hero product, LIBIRA leads customer acquisition and drives the highest volume in our portfolio.',
+      'wm-eyebrow':'The Business Case','wm-title':'Why <em style="color:#C8973A;">This Market Works</em>',
+      'wm-1-title':'High Margin Product','wm-1-desc':"Men's wellness supplements command exceptional margins — up to 5× cost of goods. Low manufacturing complexity combined with premium positioning means strong profitability at every unit sold.",
+      'wm-2-title':'High Repeat Purchase Rate','wm-2-desc':'Customers reorder at least once a month. Unlike one-time purchases, supplements build recurring revenue streams — creating predictable cash flow and strong customer lifetime value.',
+      'wm-3-title':'Men with ED & Premature Ejaculation','wm-3-desc':'The scale of need is enormous. Erectile dysfunction (ED) affects approximately <strong>322 million men worldwide</strong>. Premature ejaculation (PE) affects <strong>120–150 million men</strong> using a strict clinical definition — rising to 610–920 million on a broader self-reported basis. Combined, these conditions represent one of the largest underserved health markets in the world.',
+      'wm-3-desc2':'This high-need demographic actively seeks effective, discreet, and natural solutions — exactly what Libidiol delivers.',
+      'wm-4-title':'Recreational Enhancement Demand','wm-4-desc':'20–40% of enhancement product users have no medical condition — they purchase purely to elevate performance, confidence, and intimacy experience. This growing recreational segment broadens the addressable market significantly beyond clinical need.',
+      'wm-4-desc2':"Libidiol's herbal formula is side-effect free and long-lasting, making it the perfect fit for this audience. Alongside recreational users, we also capture men who have experienced unwanted side effects from pharmaceutical alternatives and are actively seeking a cleaner, more natural solution that actually works.",
+      'thailand-eyebrow':'Our Story','thailand-title':'Born in <em>Thailand</em>','thailand-intro':'From a single market with a big idea — to pharmacies, global shipments, and now entering the EU and USA. This is how Libidiol was built.',
+      'thailand-p1':"Three years ago, Libidiol was founded in Thailand with a simple conviction: men's vitality deserved a premium, natural, and clinically-informed solution. Starting from scratch in one of Southeast Asia's most dynamic wellness markets, we built our formulas, our brand, and our distribution network from the ground up.",
+      'thailand-p2':"Last year marked a turning point. Growth accelerated exponentially — our products are now stocked across pharmacies in Bangkok and Pattaya, two of Thailand's most commercially active cities, giving us consistent brick-and-mortar presence and brand visibility in high-footfall locations.",
+      'thailand-p3':'A significant and unexpected growth driver has been the expat and tourist community. Western men living in Thailand and visitors from Europe and the USA discovered our products, experienced real results, and kept ordering — even after returning home. Shipments are now dispatched directly from Thailand to customers across the globe, validating international product-market fit before we even formally enter those markets.',
+      'tl-y1-title':'Brand & Formula Launch','tl-y1-desc':'Founded in Thailand. LIBIRA and VAROMAX formulas developed, tested, and brought to market. Initial retail and online sales established.',
+      'tl-y2-title':'Pharmacy Network Expansion','tl-y2-desc':'Products enter pharmacy chains across Pattaya and Bangkok. Growing word-of-mouth among expat communities and inbound tourists drives organic demand.',
+      'tl-y3-title':'Exponential Growth & Global Orders','tl-y3-desc':'Sales surged year-on-year. Western expats and tourists returning home began ordering online, triggering direct international shipments from Thailand — an early proof of global demand.',
+      'tl-next-title':'EU & USA Market Entry','tl-next-desc':'With a proven product, growing customer base, and validated international demand, Libidiol is now ready to formally enter the European Union and United States markets.',
+      'why-eyebrow':'Investment Case','why-title':'Why <em>Invest in Libidiol</em>',
+      'pillar-1-title':'Differentiated Portfolio','pillar-1-text':'Two distinct products serve different consumer segments and price points, reducing risk while maximising addressable market reach.',
+      'pillar-2-title':'Natural Formula Positioning','pillar-2-text':'Consumer demand for natural health solutions is accelerating globally. Our formulas are aligned with this structural shift.',
+      'pillar-3-title':'Scalable Distribution','pillar-3-text':'Our go-to-market strategy spans e-commerce, pharmacy channels, adult wellness channels, and international distribution partnerships.',
+      'pillar-4-title':'Premium Brand Identity','pillar-4-text':'Strong visual identity drives shelf standout and repeat purchase intent across all target markets.',
+      'pillar-5-title':'High-Margin Economics','pillar-5-text':'Dietary supplements enjoy some of the best unit economics in consumer goods — lean manufacturing and high gross margins.',
+      'pillar-6-title':'Early Mover Advantage','pillar-6-text':"Having established a strong foundation in Thailand, we are now expanding into the European Union and the United States — targeting two of the world's largest and most lucrative supplement markets.",
+      'market-eyebrow':'Market Opportunity','market-title':"Men's Vitality — <em>Explosive Growth</em>",
+      'market-intro':"The men's sexual wellness and vitality supplement category is one of the fastest-growing segments in consumer health. EU and US markets are recording double-digit year-over-year expansion, driven by rising consumer awareness, destigmatisation of men's health, and growing demand for natural alternatives.",
+      'market-eu-region':'European Union','market-eu-desc':"The EU men's health supplement market is growing at ~18% annually, fuelled by an ageing male population, rising disposable income, and expanding e-commerce penetration across Germany, France, the Netherlands, and Scandinavia. Regulatory acceptance of natural botanical formulas provides a clear path to shelf and digital distribution.",
+      'market-us-region':'United States','market-us-desc':"The US men's vitality segment is the world's largest and most dynamic, growing at ~22% per year. Direct-to-consumer channels, subscription models, and influencer-led marketing are accelerating adoption. Consumers increasingly seek clinically-informed, natural formulas — a space where Libidiol is precisely positioned.",
+      'market-stat1-label':"Global men's vitality supplement market size (2025)",'market-stat2-label':'Combined EU & USA average YoY growth rate','market-stat3-label':'Projected market value by 2030',
+      'contact-eyebrow':'Get In Touch','contact-title':'Request the<br><em>Investment Deck</em>','contact-desc':'Complete the form and our team will send you the full investor prospectus, financial projections, and product dossier.',
+      'ci-brand-lbl':'Brand','ci-products-lbl':'Products','ci-invtype-lbl':'Investment Type','ci-invtype-val':'Equity · Partnership · Distribution','ci-enquiries-lbl':'Enquiries','ci-website-lbl':'Website','ci-website-link':'Visit our website',
+      'form-firstname':'First Name','form-lastname':'Last Name','form-email':'Email Address','form-company':'Company / Fund Name','form-range':'Investment Range','form-message':'Tell us about your interest in Libidiol...','form-submit':'Send Request →',
+      'ft-tagline':"Pioneering premium men's health supplements. Natural formulas, clinically inspired, globally distributed.",'ft-nav-title':'Navigation','ft-nav-stats':'Market Stats','ft-category-lbl':'Category',"ft-category-val":"Men's Health Supplements",'ft-copyright':'© 2026 Libidiol. All rights reserved. For investor enquiries only.'
+    },
+    ru: {
+      'nav-home':'Главная','nav-about':'О нас','nav-products':'Продукты','nav-investment':'Инвестиции','nav-investment-case':'Инвестиционный кейс','nav-contact':'Контакты','nav-request-deck':'Запросить Декк',
+      'mio-banner':'Медицинская Инвестиционная Возможность · 2026',
+      'hero-title':'Будущее<br>мужского здоровья<em>Станьте частью этого</em>',
+      'hero-starting':'Инвестиции от <strong>$500</strong> с высоким ROI',
+      'hero-sub':'Мировая отрасль объёмом $26 млрд. <span style="color:#C8973A;font-weight:600;">Взрывной спрос.</span> Ранняя стадия. Получите долю в медицинской отрасли с глобальным потенциалом роста.',
+      'hero-cta':'Узнать больше','hero-tag1':'Научно обоснованная формула','hero-tag2':'Натуральные ингредиенты',
+      'hero-about-label':'О компании Libidiol','hero-about-title':'Раскройте силу природы для страстной жизни',
+      'hero-about-desc':'Премиальные натуральные формулы с научным подходом — создаём портфель, признанный во всём мире и дающий реальные результаты.','hero-about-link':'Изучить продукты →',
+      'stat-market':'Объём мирового рынка','stat-growth':'Ежегодный темп роста','stat-supplements':'Натуральные добавки г/г','stat-consumers':'Целевая аудитория',
+      'inv-title':'Инвестиционные <span>Продукты</span>','inv-sub':'Два премиальных препарата для мужского здоровья — каждый нацелен на отдельный сегмент, подкреплён натуральными формулами и проверенным рыночным спросом.','inv-link':'Подробнее →',
+      'varomax-tag':'Клинический · Натуральный','prod-sub-natural':'Натуральная формула для мужчин',
+      'varomax-desc':'Формула для жизненной силы в упаковке фармацевтического класса — создана на основе доверия, прозрачности и клинически вдохновлённых ингредиентов.',
+      'varomax-feat1':'Натуральная формула','varomax-feat2':'Клинически вдохновлённые ингредиенты','varomax-feat3':'Упаковка фармацевтического класса',
+      'pp-purpose':'Назначение','pp-bestfor':'Лучше всего для','pp-duration':'Продолжительность','pp-safety':'Безопасность',
+      'varomax-purpose-text':'Выносливость, стойкость и физическая сила.','varomax-bestfor-text':'Мужчин, нуждающихся в длительной поддержке производительности.',
+      'varomax-duration-text':'Действует до 36 часов.','herbal-safe':'100% растительный состав — без побочных эффектов.',
+      'libira-tag':'Быстрое действие · 30 мин','libira-desc':'Наш флагманский быстродействующий препарат — смелый, эффективный, культовый. Доверие завоёвано драматическими результатами и премиальной синей упаковкой.',
+      'libira-feat1':'Действует уже через 30 минут','libira-feat2':'Натуральные активные ингредиенты','libira-feat3':'Премиальная металлическая синяя упаковка',
+      'libira-purpose-text':'Уверенность, желание и интимная энергия.','libira-bestfor-text':'Мужчин, желающих улучшить настроение, кровоток и интимный опыт.','libira-duration-text':'Действует до 36 часов.',
+      'owyneed-title':'Только тогда, когда нужно','owyneed-intro':'В отличие от ежедневных витаминов, Libira и Varomax принимаются по необходимости. Это делает их:',
+      'owyneed-li1':'<strong>Гибкими</strong> – мужчины выбирают, когда хотят эффект: особый вечер, поездка на выходные или насыщенный день.',
+      'owyneed-li2':'<strong>Практичными</strong> – не нужно соблюдать ежедневный режим приёма.',
+      'owyneed-li3':'<strong>С высоким повторным спросом</strong> – потребляемый формат создаёт надёжные циклы заказов и долгосрочную ценность клиента.',
+      'owyneed-li4':'<strong>Большой целевой рынок</strong> – сотни миллионов мужчин по всему миру сталкиваются с проблемами сексуального здоровья.',
+      'varomax-detail-tagline':'Клинический выбор','varomax-d1-title':'Натуральная формула','varomax-d1-desc':'Точно подобранные ингредиенты для мужской жизненной силы на основе натуральных, научно отобранных соединений.',
+      'varomax-d2-title':'Доверие фармацевтического класса','varomax-d2-desc':'Чистая белая упаковка сигнализирует о клинической надёжности — укрепляет доверие потребителей и стимулирует повторные покупки.',
+      'varomax-d3-title':'Премиальное позиционирование','varomax-d3-desc':'Позиционируется в растущей категории натурального здоровья с высокой маржой и масштабируемой экономикой производства.',
+      'libira-detail-tagline':'Смелый лидер','libira-d1-title':'Быстрое действие — 30 минут','libira-d1-desc':'Формула быстрого действия для мужчин, требующих результатов. Эффективна в течение 30 минут после приёма.',
+      'libira-d2-title':'Узнаваемый бренд','libira-d2-desc':'Культовая металлическая синяя упаковка мгновенно выделяется на полке и обеспечивает высокое запоминание бренда.',
+      'libira-d3-title':'Флагманский источник дохода','libira-d3-desc':'Являясь основным продуктом, LIBIRA обеспечивает привлечение клиентов и наибольший объём продаж в нашем портфеле.',
+      'wm-eyebrow':'Бизнес-кейс','wm-title':'Почему <em style="color:#C8973A;">этот рынок работает</em>',
+      'wm-1-title':'Высокомаржинальный продукт','wm-1-desc':'Добавки для мужского здоровья имеют исключительную маржу — до 5× себестоимости. Низкая сложность производства в сочетании с премиальным позиционированием обеспечивает высокую прибыльность каждой единицы.',
+      'wm-2-title':'Высокий уровень повторных покупок','wm-2-desc':'Клиенты повторно заказывают не реже раза в месяц. Добавки формируют устойчивые потоки выручки — создавая предсказуемый денежный поток и высокую пожизненную ценность клиента.',
+      'wm-3-title':'Мужчины с ЭД и преждевременной эякуляцией','wm-3-desc':'Масштаб потребности огромен. Эректильная дисфункция (ЭД) затрагивает около <strong>322 миллионов мужчин во всём мире</strong>. Преждевременная эякуляция (ПЭ) затрагивает <strong>120–150 миллионов мужчин</strong>. В совокупности эти состояния представляют один из крупнейших недостаточно обслуживаемых рынков здравоохранения.',
+      'wm-3-desc2':'Эта демографическая группа активно ищет эффективные, дискретные и натуральные решения — именно то, что предлагает Libidiol.',
+      'wm-4-title':'Рекреационный спрос','wm-4-desc':'20–40% пользователей продуктов для улучшения не имеют медицинских показаний — они покупают их для повышения производительности, уверенности и интимного опыта.',
+      'wm-4-desc2':'Растительная формула Libidiol не имеет побочных эффектов и обеспечивает длительный эффект. Мы также привлекаем мужчин, испытывавших нежелательные побочные эффекты от фармацевтических альтернатив.',
+      'thailand-eyebrow':'Наша история','thailand-title':'Рождено в <em>Таиланде</em>','thailand-intro':'От одного рынка с большой идеей — до аптек, мировых поставок и выхода на рынки ЕС и США. Вот как был создан Libidiol.',
+      'thailand-p1':'Три года назад Libidiol был основан в Таиланде: мужская жизненная сила заслуживает премиального, натурального и научно обоснованного решения. Начав с нуля на одном из самых динамичных рынков велнеса в Юго-Восточной Азии, мы создали наши формулы, бренд и дистрибьюторскую сеть.',
+      'thailand-p2':'Прошлый год стал переломным. Рост ускорился экспоненциально — наши продукты теперь представлены в аптеках Бангкока и Паттайи, обеспечивая постоянное физическое присутствие и видимость бренда.',
+      'thailand-p3':'Значительным драйвером роста стало сообщество экспатов и туристов. Западные мужчины из Европы и США открыли наши продукты, получили реальные результаты и продолжали заказывать после возвращения домой.',
+      'tl-y1-title':'Запуск бренда и формул','tl-y1-desc':'Основан в Таиланде. Формулы LIBIRA и VAROMAX разработаны, протестированы и выведены на рынок.',
+      'tl-y2-title':'Расширение аптечной сети','tl-y2-desc':'Продукты появились в аптечных сетях Паттайи и Бангкока. Сарафанное радио среди экспатов и туристов стимулирует органический спрос.',
+      'tl-y3-title':'Экспоненциальный рост и международные заказы','tl-y3-desc':'Продажи резко выросли. Западные экспаты, вернувшись домой, начали делать онлайн-заказы, запустив прямые международные поставки из Таиланда.',
+      'tl-next-title':'Выход на рынки ЕС и США','tl-next-desc':'Имея проверенный продукт и подтверждённый международный спрос, Libidiol готов официально выйти на рынки Европейского союза и США.',
+      'why-eyebrow':'Инвестиционный кейс','why-title':'Почему <em>инвестировать в Libidiol</em>',
+      'pillar-1-title':'Дифференцированный портфель','pillar-1-text':'Два разных продукта обслуживают разные потребительские сегменты, снижая риски и максимизируя охват рынка.',
+      'pillar-2-title':'Натуральная формула','pillar-2-text':'Потребительский спрос на натуральные решения для здоровья ускоряется. Наши формулы соответствуют этому структурному сдвигу.',
+      'pillar-3-title':'Масштабируемая дистрибуция','pillar-3-text':'Наша стратегия охватывает e-commerce, аптечные каналы и международные дистрибьюторские партнёрства.',
+      'pillar-4-title':'Премиальная идентичность бренда','pillar-4-text':'Сильная визуальная идентичность обеспечивает выделение на полке и повторные покупки на всех целевых рынках.',
+      'pillar-5-title':'Высокомаржинальная экономика','pillar-5-text':'Диетические добавки пользуются одной из лучших экономик единиц в потребительских товарах — бережное производство и высокая валовая маржа.',
+      'pillar-6-title':'Преимущество раннего выхода','pillar-6-text':'Создав прочную основу в Таиланде, мы расширяемся на Европейский союз и США — нацеливаясь на два крупнейших рынка добавок.',
+      'market-eyebrow':'Рыночная возможность','market-title':'Мужское здоровье — <em>взрывной рост</em>',
+      'market-intro':'Категория добавок для сексуального велнеса мужчин является одним из самых быстрорастущих сегментов потребительского здравоохранения. Рынки ЕС и США фиксируют двузначный рост год к году.',
+      'market-eu-region':'Европейский союз','market-eu-desc':'Рынок мужских добавок в ЕС растёт примерно на 18% в год, чему способствуют стареющее мужское население, рост доходов и расширение e-commerce в Германии, Франции, Нидерландах и Скандинавии.',
+      'market-us-region':'Соединённые Штаты','market-us-desc':'Сегмент мужской жизненной силы в США является крупнейшим в мире, растя примерно на 22% в год. Прямые потребительские каналы и маркетинг через инфлюенсеров ускоряют принятие продуктов.',
+      'market-stat1-label':'Объём мирового рынка добавок для мужской жизненной силы (2025)','market-stat2-label':'Средний темп роста г/г для ЕС и США','market-stat3-label':'Прогнозируемая стоимость рынка к 2030 году',
+      'contact-eyebrow':'Свяжитесь с нами','contact-title':'Запросить<br><em>Инвестиционную презентацию</em>','contact-desc':'Заполните форму, и наша команда отправит вам полный инвестиционный проспект, финансовые прогнозы и досье по продукту.',
+      'ci-brand-lbl':'Бренд','ci-products-lbl':'Продукты','ci-invtype-lbl':'Тип инвестиций','ci-invtype-val':'Акционерный капитал · Партнёрство · Дистрибуция','ci-enquiries-lbl':'Запросы','ci-website-lbl':'Сайт','ci-website-link':'Посетить наш сайт',
+      'form-firstname':'Имя','form-lastname':'Фамилия','form-email':'Электронная почта','form-company':'Компания / Название фонда','form-range':'Диапазон инвестиций','form-message':'Расскажите о вашем интересе к Libidiol...','form-submit':'Отправить запрос →',
+      'ft-tagline':'Передовые премиальные добавки для мужского здоровья. Натуральные формулы, клинически вдохновлённые, распространяемые по всему миру.','ft-nav-title':'Навигация','ft-nav-stats':'Рыночная статистика','ft-category-lbl':'Категория','ft-category-val':'Добавки для мужского здоровья','ft-copyright':'© 2026 Libidiol. Все права защищены. Только для запросов инвесторов.'
+    },
+    es: {
+      'nav-home':'Inicio','nav-about':'Nosotros','nav-products':'Productos','nav-investment':'Inversión','nav-investment-case':'Caso de Inversión','nav-contact':'Contacto','nav-request-deck':'Solicitar Dossier',
+      'mio-banner':'Oportunidad de Inversión Médica · 2026',
+      'hero-title':'El Futuro de la<br>Salud Masculina<em>Sé Parte de Ello</em>',
+      'hero-starting':'Inversiones Desde <strong>$500</strong> Con Alto ROI',
+      'hero-sub':'Una industria global de $26B. <span style="color:#C8973A;font-weight:600;">Demanda explosiva.</span> Entrada en etapa temprana. Obtén una participación en la industria médica posicionada para expansión global.',
+      'hero-cta':'Explorar Oportunidad','hero-tag1':'Fórmula Respaldada por Ciencia','hero-tag2':'Ingredientes Naturales',
+      'hero-about-label':'Acerca de Libidiol','hero-about-title':'Libera el Poder de la Naturaleza para una Vida Apasionada',
+      'hero-about-desc':'Fórmulas naturales premium con desarrollo científico — construyendo un portafolio reconocido globalmente que entrega resultados.','hero-about-link':'Descubrir Productos →',
+      'stat-market':'Tamaño del Mercado Global','stat-growth':'Tasa de Crecimiento Anual','stat-supplements':'Suplementos Naturales Anual','stat-consumers':'Consumidores Potenciales',
+      'inv-title':'Productos de <span>Inversión</span>','inv-sub':'Dos suplementos premium para la salud masculina — cada uno dirigido a un segmento de consumidores distinto, respaldado por fórmulas naturales y demanda probada.','inv-link':'Ver Detalles →',
+      'varomax-tag':'Clínico · Natural','prod-sub-natural':'Fórmula Natural para Hombres',
+      'varomax-desc':'Fórmula de vitalidad en empaque farmacéutico — construida sobre confianza, transparencia e ingredientes de inspiración clínica.',
+      'varomax-feat1':'Fórmula de mejora natural','varomax-feat2':'Ingredientes de inspiración clínica','varomax-feat3':'Empaque de grado farmacéutico',
+      'pp-purpose':'Propósito','pp-bestfor':'Ideal para','pp-duration':'Duración','pp-safety':'Seguridad',
+      'varomax-purpose-text':'Resistencia, fuerza y energía física.','varomax-bestfor-text':'Hombres que necesitan rendimiento duradero y apoyo físico.',
+      'varomax-duration-text':'Efectivo hasta 36 horas.','herbal-safe':'100% herbal — sin efectos secundarios.',
+      'libira-tag':'Acción Rápida · 30 Min','libira-desc':'Nuestro suplemento de acción rápida insignia — audaz, efectivo, icónico. Confiado por sus resultados dramáticos y empaque azul metálico premium.',
+      'libira-feat1':'Actúa en tan solo 30 minutos','libira-feat2':'Ingredientes activos naturales','libira-feat3':'Empaque azul metálico premium',
+      'libira-purpose-text':'Confianza, deseo y energía íntima.','libira-bestfor-text':'Hombres que buscan mejorar el estado de ánimo, la circulación y la experiencia íntima.','libira-duration-text':'Efectivo hasta 36 horas.',
+      'owyneed-title':'Solo Cuando lo Necesitas','owyneed-intro':'A diferencia de las vitaminas diarias, Libira y Varomax se toman según sea necesario. Esto los hace:',
+      'owyneed-li1':'<strong>Flexibles</strong> – los hombres eligen cuándo quieren el impulso, ya sea una noche especial, un viaje de fin de semana o después de una noche de fiesta.',
+      'owyneed-li2':'<strong>Prácticos</strong> – sin necesidad de comprometerse con suplementación diaria.',
+      'owyneed-li3':'<strong>Alta demanda repetida</strong> – el formato consumible crea ciclos de reorden confiables y valor de vida del cliente a largo plazo.',
+      'owyneed-li4':'<strong>Mercado potencial enorme</strong> – cientos de millones de hombres en todo el mundo experimentan problemas de salud sexual.',
+      'varomax-detail-tagline':'La Elección Clínica','varomax-d1-title':'Fórmula de Mejora Natural','varomax-d1-desc':'Ingredientes mezclados con precisión que potencian la vitalidad masculina a través de compuestos naturales seleccionados científicamente.',
+      'varomax-d2-title':'Confianza de Grado Farmacéutico','varomax-d2-desc':'El empaque blanco limpio señala credibilidad clínica — construyendo confianza del consumidor y compras repetidas.',
+      'varomax-d3-title':'Posicionamiento Premium','varomax-d3-desc':'Posicionado en la categoría de salud natural con márgenes sólidos y economía de producción escalable.',
+      'libira-detail-tagline':'El Intérprete Audaz','libira-d1-title':'Acción Rápida — 30 Minutos','libira-d1-desc':'Fórmula de inicio rápido diseñada para hombres que exigen resultados. Efectiva dentro de los 30 minutos de consumo.',
+      'libira-d2-title':'Reconocimiento de Marca Audaz','libira-d2-desc':'El icónico empaque azul metálico crea destaque instantáneo en estanterías y fuerte recuerdo del consumidor.',
+      'libira-d3-title':'Principal Motor de Ingresos','libira-d3-desc':'Como nuestro producto insignia, LIBIRA lidera la adquisición de clientes y genera el mayor volumen en nuestro portafolio.',
+      'wm-eyebrow':'El Caso de Negocio','wm-title':'Por Qué <em style="color:#C8973A;">Este Mercado Funciona</em>',
+      'wm-1-title':'Producto de Alto Margen','wm-1-desc':'Los suplementos de bienestar masculino tienen márgenes excepcionales — hasta 5× el costo de bienes. La baja complejidad de fabricación combinada con posicionamiento premium genera fuerte rentabilidad.',
+      'wm-2-title':'Alta Tasa de Compras Repetidas','wm-2-desc':'Los clientes reordenan al menos una vez al mes. Los suplementos generan flujos de ingresos recurrentes — creando flujo de caja predecible y alto valor de vida del cliente.',
+      'wm-3-title':'Hombres con DE y Eyaculación Precoz','wm-3-desc':'La escala de la necesidad es enorme. La disfunción eréctil (DE) afecta aproximadamente a <strong>322 millones de hombres en todo el mundo</strong>. La eyaculación precoz (EP) afecta a <strong>120–150 millones de hombres</strong>.',
+      'wm-3-desc2':'Este grupo demográfico busca activamente soluciones efectivas, discretas y naturales — exactamente lo que ofrece Libidiol.',
+      'wm-4-title':'Demanda de Mejora Recreativa','wm-4-desc':'El 20–40% de los usuarios de productos de mejora no tienen condición médica — los compran para elevar el rendimiento, la confianza y la experiencia íntima.',
+      'wm-4-desc2':'La fórmula herbal de Libidiol no tiene efectos secundarios. También captamos hombres que han experimentado efectos secundarios no deseados de alternativas farmacéuticas.',
+      'thailand-eyebrow':'Nuestra Historia','thailand-title':'Nacido en <em>Tailandia</em>','thailand-intro':'Desde un solo mercado con una gran idea — hasta farmacias, envíos globales y ahora entrando a la UE y EE.UU. Así se construyó Libidiol.',
+      'thailand-p1':'Hace tres años, Libidiol fue fundado en Tailandia con una convicción simple: la vitalidad masculina merece una solución premium, natural y de inspiración clínica. Desde cero en uno de los mercados de bienestar más dinámicos del sudeste asiático.',
+      'thailand-p2':'El año pasado marcó un punto de inflexión. El crecimiento se aceleró exponencialmente — nuestros productos están ahora en farmacias de Bangkok y Pattaya, dándonos presencia constante en ubicaciones de alto tráfico.',
+      'thailand-p3':'Un motor de crecimiento significativo ha sido la comunidad expatriada y turística. Hombres occidentales en Tailandia y visitantes de Europa y EE.UU. descubrieron nuestros productos y siguieron ordenando incluso al regresar a casa.',
+      'tl-y1-title':'Lanzamiento de Marca y Fórmulas','tl-y1-desc':'Fundado en Tailandia. Fórmulas LIBIRA y VAROMAX desarrolladas, probadas y lanzadas al mercado.',
+      'tl-y2-title':'Expansión de Red de Farmacias','tl-y2-desc':'Los productos entran en cadenas de farmacias en Pattaya y Bangkok. El boca a boca entre expats y turistas impulsa la demanda orgánica.',
+      'tl-y3-title':'Crecimiento Exponencial y Pedidos Globales','tl-y3-desc':'Las ventas aumentaron año tras año. Expats y turistas que regresaban a casa comenzaron a ordenar en línea, generando envíos internacionales directos desde Tailandia.',
+      'tl-next-title':'Entrada al Mercado UE y EE.UU.','tl-next-desc':'Con un producto probado, base de clientes creciente y demanda internacional validada, Libidiol está listo para entrar formalmente en los mercados de la UE y EE.UU.',
+      'why-eyebrow':'Caso de Inversión','why-title':'Por Qué <em>Invertir en Libidiol</em>',
+      'pillar-1-title':'Portafolio Diferenciado','pillar-1-text':'Dos productos distintos sirven a diferentes segmentos de consumidores, reduciendo el riesgo y maximizando el alcance del mercado.',
+      'pillar-2-title':'Posicionamiento de Fórmula Natural','pillar-2-text':'La demanda de soluciones de salud natural se está acelerando globalmente. Nuestras fórmulas están alineadas con este cambio estructural.',
+      'pillar-3-title':'Distribución Escalable','pillar-3-text':'Nuestra estrategia abarca e-commerce, canales de farmacias, canales de bienestar adulto y asociaciones de distribución internacional.',
+      'pillar-4-title':'Identidad de Marca Premium','pillar-4-text':'Una fuerte identidad visual impulsa el destaque en estanterías y la intención de compra repetida en todos los mercados objetivo.',
+      'pillar-5-title':'Economía de Alto Margen','pillar-5-text':'Los suplementos dietéticos disfrutan de algunas de las mejores economías unitarias en bienes de consumo — fabricación eficiente y altos márgenes brutos.',
+      'pillar-6-title':'Ventaja del Primer Movedor','pillar-6-text':'Habiendo establecido una base sólida en Tailandia, ahora nos expandimos a la UE y EE.UU. — dos de los mercados de suplementos más grandes y lucrativos del mundo.',
+      'market-eyebrow':'Oportunidad de Mercado','market-title':'Vitalidad Masculina — <em>Crecimiento Explosivo</em>',
+      'market-intro':'La categoría de suplementos de bienestar sexual masculino es uno de los segmentos de más rápido crecimiento en la salud del consumidor. Los mercados de la UE y EE.UU. registran expansión de dos dígitos año tras año.',
+      'market-eu-region':'Unión Europea','market-eu-desc':'El mercado de suplementos para la salud masculina en la UE crece ~18% anualmente, impulsado por una población masculina envejecida, ingresos disponibles crecientes y expansión del e-commerce.',
+      'market-us-region':'Estados Unidos','market-us-desc':'El segmento de vitalidad masculina en EE.UU. es el más grande y dinámico del mundo, creciendo ~22% por año. Los canales directos al consumidor y el marketing de influencers aceleran la adopción.',
+      'market-stat1-label':'Tamaño del mercado global de suplementos de vitalidad masculina (2025)','market-stat2-label':'Tasa de crecimiento anual combinada UE y EE.UU.','market-stat3-label':'Valor de mercado proyectado para 2030',
+      'contact-eyebrow':'Ponerse en Contacto','contact-title':'Solicitar el<br><em>Dossier de Inversión</em>','contact-desc':'Complete el formulario y nuestro equipo le enviará el prospecto completo para inversores, proyecciones financieras y dossier de producto.',
+      'ci-brand-lbl':'Marca','ci-products-lbl':'Productos','ci-invtype-lbl':'Tipo de Inversión','ci-invtype-val':'Patrimonio · Asociación · Distribución','ci-enquiries-lbl':'Consultas','ci-website-lbl':'Sitio Web','ci-website-link':'Visitar nuestro sitio web',
+      'form-firstname':'Nombre','form-lastname':'Apellido','form-email':'Correo Electrónico','form-company':'Empresa / Nombre del Fondo','form-range':'Rango de Inversión','form-message':'Cuéntenos sobre su interés en Libidiol...','form-submit':'Enviar Solicitud →',
+      'ft-tagline':'Suplementos premium para la salud masculina. Fórmulas naturales, inspiración clínica, distribución global.','ft-nav-title':'Navegación','ft-nav-stats':'Estadísticas del Mercado','ft-category-lbl':'Categoría','ft-category-val':'Suplementos para la Salud Masculina','ft-copyright':'© 2026 Libidiol. Todos los derechos reservados. Solo para consultas de inversores.'
+    },
+    zh: {
+      'nav-home':'首页','nav-about':'关于我们','nav-products':'产品','nav-investment':'投资','nav-investment-case':'投资案例','nav-contact':'联系我们','nav-request-deck':'申请资料',
+      'mio-banner':'医疗投资机会 · 2026',
+      'hero-title':'男性健康<br>的未来<em>成为其中一份子</em>',
+      'hero-starting':'投资起点 <strong>$500</strong>，高回报率',
+      'hero-sub':'全球$260亿产业。<span style="color:#C8973A;font-weight:600;">爆炸性需求。</span>早期入场。获得全球扩张的医疗行业股权。',
+      'hero-cta':'探索机会','hero-tag1':'科学支持配方','hero-tag2':'天然成分',
+      'hero-about-label':'关于 Libidiol','hero-about-title':'释放自然力量，点燃激情生活',
+      'hero-about-desc':'以科学驱动研发的优质天然配方——打造在全球引起共鸣并带来实际效果的产品组合。','hero-about-link':'发现产品 →',
+      'stat-market':'全球市场规模','stat-growth':'年增长率','stat-supplements':'天然补充剂年增长','stat-consumers':'目标消费群体',
+      'inv-title':'投资 <span>产品</span>','inv-sub':'两款高端男性健康补充剂——各针对不同消费细分市场，以天然配方和经验证的市场需求为支撑。','inv-link':'查看详情 →',
+      'varomax-tag':'临床 · 天然','prod-sub-natural':'男性天然增强配方',
+      'varomax-desc':'药品级包装的活力配方——以信任、透明度和临床灵感成分为基础打造。',
+      'varomax-feat1':'天然增强配方','varomax-feat2':'临床灵感成分','varomax-feat3':'药品级包装',
+      'pp-purpose':'用途','pp-bestfor':'适合人群','pp-duration':'持续时间','pp-safety':'安全性',
+      'varomax-purpose-text':'耐力、持久力和体能驱动力。','varomax-bestfor-text':'需要持久体能表现和体力支持的男性。',
+      'varomax-duration-text':'有效时间长达36小时。','herbal-safe':'100%纯植物——无副作用。',
+      'libira-tag':'快速起效 · 30分钟','libira-desc':'我们的旗舰快效补充剂——大胆、有效、标志性。因其显著效果和高端金属蓝包装而备受信赖。',
+      'libira-feat1':'最短30分钟即可起效','libira-feat2':'天然活性成分','libira-feat3':'高端金属蓝包装',
+      'libira-purpose-text':'自信、欲望和亲密能量。','libira-bestfor-text':'希望改善情绪、血液循环和亲密体验的男性。','libira-duration-text':'有效时间长达36小时。',
+      'owyneed-title':'按需使用','owyneed-intro':'与每日维生素不同，Libira和Varomax是按需服用的——仅在需要时服用。这使它们：',
+      'owyneed-li1':'<strong>灵活</strong> – 男性可以选择何时需要提升，无论是特别的夜晚、周末旅行还是放松之夜。',
+      'owyneed-li2':'<strong>实用</strong> – 无需坚持每日补充计划。',
+      'owyneed-li3':'<strong>高重复需求</strong> – 消耗型产品形式创造可靠的复购周期和长期客户价值。',
+      'owyneed-li4':'<strong>庞大目标市场</strong> – 全球数亿男性面临性健康问题，支撑强劲的长期增长潜力。',
+      'varomax-detail-tagline':'临床之选','varomax-d1-title':'天然增强配方','varomax-d1-desc':'精准混合成分，通过天然、科学精选化合物针对男性活力。',
+      'varomax-d2-title':'药品级信任','varomax-d2-desc':'洁净白色包装传递临床可信度——建立消费者信心并促进复购。',
+      'varomax-d3-title':'高端市场定位','varomax-d3-desc':'定位于天然健康增长品类，具有强劲利润率和可扩展的生产经济性。',
+      'libira-detail-tagline':'大胆表演者','libira-d1-title':'快速起效 — 30分钟','libira-d1-desc':'专为要求即时效果的男性设计的速效配方。服用后30分钟内有效。',
+      'libira-d2-title':'大胆品牌认知','libira-d2-desc':'标志性金属蓝包装在货架上立即脱颖而出，在所有市场中具有强烈的消费者记忆。',
+      'libira-d3-title':'旗舰收入驱动者','libira-d3-desc':'作为核心产品，LIBIRA主导客户获取并带动产品组合中最高的销量。',
+      'wm-eyebrow':'商业案例','wm-title':'为何 <em style="color:#C8973A;">这个市场有效</em>',
+      'wm-1-title':'高利润率产品','wm-1-desc':'男性健康补充剂具有卓越的利润率——高达成本的5倍。低制造复杂度加上高端定位意味着每件产品都有强劲的盈利能力。',
+      'wm-2-title':'高重复购买率','wm-2-desc':'客户每月至少复购一次。补充剂建立持续收入流——创造可预测的现金流和强劲的客户终身价值。',
+      'wm-3-title':'男性勃起功能障碍和早泄','wm-3-desc':'需求规模巨大。勃起功能障碍（ED）影响约<strong>3.22亿全球男性</strong>。早泄（PE）影响<strong>1.2–1.5亿男性</strong>。这些病症代表了全球最大的未被充分服务的健康市场之一。',
+      'wm-3-desc2':'这一高需求人群积极寻求有效、低调和天然的解决方案——正是Libidiol所提供的。',
+      'wm-4-title':'娱乐性增强需求','wm-4-desc':'20–40%的增强产品用户没有医疗需求——他们纯粹为了提升表现、自信和亲密体验而购买。这一增长中的娱乐性细分市场大幅扩展了可寻址市场。',
+      'wm-4-desc2':'Libidiol的草本配方无副作用且持久有效，非常适合这一受众。我们还吸引了那些在药物替代品中经历过不良副作用的男性。',
+      'thailand-eyebrow':'我们的故事','thailand-title':'诞生于 <em>泰国</em>','thailand-intro':'从一个有大想法的单一市场——到药店、全球发货，现在进入欧盟和美国。这就是Libidiol的成长历程。',
+      'thailand-p1':'三年前，Libidiol在泰国成立，秉持一个简单信念：男性活力值得拥有高端、天然、有临床支持的解决方案。从东南亚最具活力的健康市场之一从零开始，我们打造了配方、品牌和分销网络。',
+      'thailand-p2':'去年是一个转折点。增长呈指数级加速——我们的产品现已在曼谷和芭提雅的药店上架，在高客流量地点保持稳定的实体存在和品牌可见度。',
+      'thailand-p3':'海外侨民和旅游社区是重要的意外增长驱动力。居住在泰国的西方男性和来自欧洲、美国的访客发现了我们的产品，获得了真实效果，甚至回国后继续订购。',
+      'tl-y1-title':'品牌与配方发布','tl-y1-desc':'在泰国成立。LIBIRA和VAROMAX配方开发、测试并推向市场。建立初始零售和网络销售。',
+      'tl-y2-title':'药店网络扩张','tl-y2-desc':'产品进入芭提雅和曼谷的连锁药店。海外侨民社区和入境游客中的口碑传播推动有机需求。',
+      'tl-y3-title':'指数级增长与全球订单','tl-y3-desc':'销售额年同比猛增。返回家乡的西方侨民和游客开始在线订购，触发了从泰国直接发往世界各地的国际发货。',
+      'tl-next-title':'进入欧盟和美国市场','tl-next-desc':'凭借经过验证的产品、不断增长的客户群和经证实的国际需求，Libidiol现已准备好正式进入欧盟和美国市场。',
+      'why-eyebrow':'投资案例','why-title':'为何 <em>投资 Libidiol</em>',
+      'pillar-1-title':'差异化产品组合','pillar-1-text':'两款不同产品服务于不同的消费细分市场和价格段，降低风险同时最大化可寻址市场覆盖。',
+      'pillar-2-title':'天然配方定位','pillar-2-text':'全球消费者对天然健康解决方案的需求正在加速。我们的配方与这一结构性转变保持一致。',
+      'pillar-3-title':'可扩展的分销','pillar-3-text':'我们的市场策略涵盖电商、药店渠道、成人健康渠道和国际分销合作。',
+      'pillar-4-title':'高端品牌形象','pillar-4-text':'强大的视觉形象在所有目标市场推动货架突出展示和复购意愿。',
+      'pillar-5-title':'高利润经济学','pillar-5-text':'膳食补充剂在消费品中享有一些最佳的单位经济性——精益制造和高毛利率。',
+      'pillar-6-title':'先发优势','pillar-6-text':'在泰国奠定坚实基础后，我们正向欧盟和美国扩张——瞄准全球两个最大、最具利润潜力的补充剂市场。',
+      'market-eyebrow':'市场机遇','market-title':'男性活力 — <em>爆炸性增长</em>',
+      'market-intro':'男性性健康和活力补充剂类别是消费者健康领域增长最快的细分市场之一。欧盟和美国市场年同比呈两位数增长，受消费者意识提升、男性健康去污名化和天然替代品需求增长驱动。',
+      'market-eu-region':'欧洲联盟','market-eu-desc':'欧盟男性健康补充剂市场年增长约18%，受老龄化男性人口、可支配收入增长以及德国、法国、荷兰和斯堪的纳维亚电商渗透扩张推动。',
+      'market-us-region':'美国','market-us-desc':'美国男性活力细分市场是全球最大、最具活力的，年增长约22%。直接面向消费者渠道、订阅模式和网红营销正在加速采用。',
+      'market-stat1-label':'全球男性活力补充剂市场规模（2025年）','market-stat2-label':'欧盟和美国平均年同比增长率','market-stat3-label':'2030年预计市场价值',
+      'contact-eyebrow':'联系我们','contact-title':'申请<br><em>投资简报</em>','contact-desc':'填写表格，我们的团队将向您发送完整的投资说明书、财务预测和产品档案。',
+      'ci-brand-lbl':'品牌','ci-products-lbl':'产品','ci-invtype-lbl':'投资类型','ci-invtype-val':'股权 · 合作 · 分销','ci-enquiries-lbl':'咨询','ci-website-lbl':'网站','ci-website-link':'访问我们的网站',
+      'form-firstname':'名字','form-lastname':'姓氏','form-email':'电子邮件地址','form-company':'公司 / 基金名称','form-range':'投资范围','form-message':'请告诉我们您对Libidiol的兴趣...','form-submit':'发送申请 →',
+      'ft-tagline':'开创性高端男性健康补充剂。天然配方，临床灵感，全球分销。','ft-nav-title':'导航','ft-nav-stats':'市场统计','ft-category-lbl':'类别','ft-category-val':'男性健康补充剂','ft-copyright':'© 2026 Libidiol. 保留所有权利。仅供投资者查询。'
+    }
+  };
+
+  const langMeta = { en:{flag:'🇬🇧',code:'EN'}, ru:{flag:'🇷🇺',code:'RU'}, es:{flag:'🇪🇸',code:'ES'}, zh:{flag:'🇨🇳',code:'ZH'} };
+  let currentLang = localStorage.getItem('lang') || 'en';
+
+  function applyLang(lang) {
+    const t = translations[lang];
+    if (!t) return;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (t[key] !== undefined) el.placeholder = t[key];
+    });
+    document.documentElement.lang = lang;
+    const m = langMeta[lang];
+    document.getElementById('langFlag').textContent = m.flag;
+    document.getElementById('langCode').textContent = m.code;
+    document.querySelectorAll('#langMenu button').forEach(btn => {
+      btn.classList.toggle('active-lang', btn.getAttribute('onclick') === `setLang('${lang}')`);
+    });
+    localStorage.setItem('lang', lang);
+    currentLang = lang;
+  }
+
+  function setLang(lang) {
+    applyLang(lang);
+    document.getElementById('langMenu').classList.remove('open');
+  }
+
+  function toggleLangMenu() {
+    document.getElementById('langMenu').classList.toggle('open');
+  }
+
+  document.addEventListener('click', e => {
+    const sw = document.getElementById('langSwitch');
+    if (sw && !sw.contains(e.target)) document.getElementById('langMenu').classList.remove('open');
+  });
+
+  applyLang(currentLang);
 </script>
 </body>
 </html>
